@@ -8,6 +8,11 @@ Validation with good type inference
 `Сontract` returns this value if it passed the validation, or `ValidationError` instance if not.
 Contracts are a 100% guarantee that the data that passed validation matches your expeted type definitions.
 
+## Install
+
+npm: `npm install --save-dev typed-contracts`
+yarn: `yarn add --dev typed-contracts`
+
 ## How it work
 
 All contracts have this interface:
@@ -35,6 +40,13 @@ namedContract.optional(invalidValue)        // => ValidationError instance
 ## Contracts can be combined
 
 ```js
+/* @flow */
+
+const {
+  isArray, isLiteral, isObject,
+  isString, isUnion, ValidationError
+} = require('typed-contracts')
+
 type Person = {
   name: string,
   gender: 'm' | 'f',
@@ -45,7 +57,7 @@ type Person = {
 // isPerson returns Person-compatibile value or ValidationError
 const isPerson = isObject({
   name: isString,
-  gender: isUnion( isLiteral('m'), isLiteral('f') ),
+  gender: isUnion(isLiteral('m'), isLiteral('f')),
   friends: isArray((valueName, value) => isPerson(valueName, value)),
   email: isString.optional,
 })
