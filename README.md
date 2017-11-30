@@ -1,4 +1,4 @@
-# typed-contracts
+# typed-contracts [![Build Status][status-img]][status-url]
 
 Validation with good type inference
 
@@ -108,3 +108,6 @@ Creates a contract that expects value, validating one of the initial contracts.
 ### `isVoid` or `isUndefined`
 
 Creates a contract that expects undefined.
+
+[status-url]: https://travis-ci.org/bigslycat/typed-contracts
+[status-img]: https://travis-ci.org/bigslycat/typed-contracts.svg?branch=master
