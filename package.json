@@ -18,7 +18,7 @@
     "build": "rollup -c",
     "precommit": "yarn lint && yarn flow && yarn test",
     "preversion": "git checkout master && yarn precommit",
-    "postversion": "git push origin master --follow-tags"
+    "postversion": "git push --follow-tags"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
