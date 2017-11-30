@@ -1,13 +1,13 @@
 /* @flow */
 
-export * from './contracts/array'
-export * from './contracts/literal'
-export * from './contracts/null'
-export * from './contracts/number'
-export * from './contracts/object'
-export * from './contracts/string'
-export * from './contracts/union'
-export * from './contracts/void'
+export { isArray } from './contracts/array'
+export { isLiteral } from './contracts/literal'
+export { isNull } from './contracts/null'
+export { isNumber } from './contracts/number'
+export { isObject } from './contracts/object'
+export { isString } from './contracts/string'
+export { isUnion } from './contracts/union'
+export { isUndefined, isVoid } from './contracts/void'
 
-export * from './createContract'
-export * from './ValidationError'
+export { createContract } from './createContract'
+export { ValidationError } from './ValidationError'

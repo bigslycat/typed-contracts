@@ -1,3 +1,15 @@
 /* @flow */
 
-export * from '../src'
+export {
+  createContract,
+  isArray,
+  isLiteral,
+  isNull,
+  isNumber,
+  isObject,
+  isString,
+  isUndefined,
+  isUnion,
+  isVoid,
+  ValidationError,
+} from '../src'
