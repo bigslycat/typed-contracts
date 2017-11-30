@@ -10,7 +10,9 @@
     "src"
   ],
   "scripts": {
-    "lint": "eslint .",
+    "lint": "yarn lint:md && yarn lint:code",
+    "lint:code": "eslint .",
+    "lint:md": "node scripts/mdlint",
     "flow": "flow",
     "test": "jest --env=node",
     "build": "rollup -c",
