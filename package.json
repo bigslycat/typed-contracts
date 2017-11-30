@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Validation with good type inference (Flow support)",
   "main": "lib/bundle.js",
-  "engines": {
-    "node": ">=6.0.0"
-  },
   "files": [
     "README.md",
     "LICENSE.md",
@@ -16,9 +13,6 @@
     "lint": "eslint .",
     "flow": "flow",
     "test": "jest --env=node",
-    "pretyped": "shx rm -rf flow-typed/npm",
-    "typed": "flow-typed update",
-    "posttyped": "flow-typed install",
     "build": "rollup -c",
     "precommit": "yarn lint && yarn flow && yarn test",
     "preversion": "git checkout master && yarn precommit",
