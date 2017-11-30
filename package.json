@@ -1,0 +1,70 @@
+{
+  "name": "typed-contracts",
+  "version": "0.0.1",
+  "description": "Validation with good type inference (Flow support)",
+  "main": "lib/bundle.js",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "files": [
+    "README.md",
+    "LICENSE.md",
+    "lib",
+    "src"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "flow": "flow",
+    "test": "jest --env=node",
+    "pretyped": "shx rm -rf flow-typed/npm",
+    "typed": "flow-typed update",
+    "posttyped": "flow-typed install",
+    "build": "rollup -c",
+    "precommit": "yarn lint && yarn flow && yarn test",
+    "preversion": "git checkout master && yarn precommit",
+    "postversion": "git push origin master --follow-tags"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-jest": "^21.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
+    "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-import": "^2.8.0",
+    "flow-bin": "^0.59.0",
+    "flow-typed": "^2.2.3",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "markdownlint": "^0.6.4",
+    "rollup": "^0.52.0",
+    "rollup-plugin-babel": "3.0.2",
+    "rollup-plugin-commonjs": "<=8.2.3 || ^8.2.7",
+    "rollup-plugin-node-resolve": "3.0.0",
+    "shx": "^0.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigslycat/typed-contracts.git"
+  },
+  "keywords": [
+    "flow",
+    "flowtype",
+    "contracts",
+    "validation",
+    "type inference"
+  ],
+  "author": {
+    "name": "Pavel Tereschenko",
+    "email": "me@stupidcat.wtf",
+    "url": "https://github.com/bigslycat"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bigslycat/typed-contracts/issues"
+  },
+  "homepage": "https://github.com/bigslycat/typed-contracts#readme"
+}

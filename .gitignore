@@ -1,0 +1,8 @@
+/node_modules
+/lib/*
+!/lib/bundle.js.flow
+/coverage
+*.log
+*.log-*
+*.log.*
+*.log_*

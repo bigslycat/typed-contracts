@@ -1,0 +1,8 @@
+/lib/*
+!/lib/bundle.js.flow
+/flow-typed/npm
+/coverage
+*.log
+*.log-*
+*.log_*
+*.log.*
