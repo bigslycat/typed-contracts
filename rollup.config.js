@@ -30,6 +30,9 @@ export default {
       exclude: 'node_modules/**',
       plugins: [
         'transform-class-properties',
+        ['babel-plugin-transform-builtin-extend', {
+          globals: ['TypeError'],
+        }],
       ],
       presets: [
         'flow',

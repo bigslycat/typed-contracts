@@ -26,7 +26,7 @@ export class ValidationError extends TypeError {
     expectedType: string,
     ...otherExpectedTypes: string[]
   ) {
-    return new this(valueName, value, expectedType, ...otherExpectedTypes)
+    return new ValidationError(valueName, value, expectedType, ...otherExpectedTypes)
   }
 
   +valueName: string;

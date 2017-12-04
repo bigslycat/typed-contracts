@@ -1,6 +1,17 @@
 {
+  "plugins": [
+    "transform-class-properties",
+    ["babel-plugin-transform-builtin-extend", {
+      "globals": ["TypeError"]
+    }]
+  ],
   "presets": [
     "flow",
-    ["env", { "targets": { "node": "current" } }]
+    ["env", {
+      "targets": {
+        "node": 1,
+        "browsers": [">= 1%"]
+      }
+    }]
   ]
 }

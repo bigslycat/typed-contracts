@@ -14,13 +14,13 @@ describe('ValidationError', () => {
   })
 
   it('Have factory of()', () => {
-    const Mock: any = jest.fn()
+    const error = ValidationError.of('valueName', 'value', 'type')
 
-    Mock.of = ValidationError.of
-
-    const error = Mock.of('valueName', 'value', 'type')
-    expect(Mock).lastCalledWith('valueName', 'value', 'type')
-    expect(Mock.mock.instances[0]).toBe(error)
+    expect(error.name).toBe('ValidationError')
+    expect(error.valueName).toBe('valueName')
+    expect(error.value).toBe('value')
+    expect(error.expectedTypes).toEqual(['type'])
+    expect(error.message).toBe('valueName must be type, but "value" (string) given')
   })
 
   it('Have name, valueName, value, expectedTypes and message properties', () => {
