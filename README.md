@@ -10,7 +10,7 @@ Contracts are a 100% guarantee that the data that passed validation matches your
 
 ## Install
 
-npm: `npm install typed-contracts`
+npm: `npm install --save typed-contracts`
 
 yarn: `yarn add typed-contracts`
 
