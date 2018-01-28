@@ -10,4 +10,5 @@ export { isUnion } from './contracts/union'
 export { isUndefined, isVoid } from './contracts/void'
 
 export { createContract } from './createContract'
+export type { Contract } from './createContract'
 export { ValidationError } from './ValidationError'

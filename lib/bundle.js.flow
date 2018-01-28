@@ -13,3 +13,5 @@ export {
   isVoid,
   ValidationError,
 } from '../src'
+
+export type { Contract } from '../src'
