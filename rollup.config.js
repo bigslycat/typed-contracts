@@ -1,4 +1,3 @@
-import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 
@@ -23,8 +22,6 @@ export default {
     format: 'cjs',
   },
   plugins: [
-    resolve(),
-    commonjs(),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
@@ -45,6 +42,7 @@ export default {
         }],
       ],
     }),
+    commonjs(),
   ],
   external: id => !!reg && reg.test(id),
   banner,
