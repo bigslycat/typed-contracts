@@ -83,7 +83,7 @@ Creates a contract that expects an array of values that are validated by the ini
 
 ### `isLiteral`
 
-Creates a contract that expects a specific string or number value.
+Creates a contract that expects a specific string, number or boolean value.
 
 ```js
 (expected: string | number) => Contract
@@ -96,6 +96,10 @@ Creates a contract that expects null.
 ### `isNumber`
 
 Creates a contract that expects number.
+
+### `isBoolean`
+
+Creates a contract that expects boolean.
 
 ### `isObject`
 
