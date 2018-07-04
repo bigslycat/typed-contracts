@@ -1,7 +1,10 @@
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import merge from 'babel-merge';
 
 import packageJson from './package.json';
+
+const babelConfig = require('./babel.config');
 
 const { dependencies } = packageJson;
 
@@ -22,32 +25,13 @@ export default {
     format: 'cjs',
   },
   plugins: [
-    babel({
-      babelrc: false,
-      exclude: 'node_modules/**',
-      plugins: [
-        'transform-class-properties',
-        [
-          'babel-plugin-transform-builtin-extend',
-          {
-            globals: ['TypeError'],
-          },
-        ],
-      ],
-      presets: [
-        'flow',
-        [
-          'env',
-          {
-            targets: {
-              node: 1,
-              browsers: ['>= 1%'],
-            },
-            modules: false,
-          },
-        ],
-      ],
-    }),
+    babel(
+      merge(babelConfig, {
+        babelrc: false,
+        exclude: 'node_modules/**',
+        presets: [['@babel/env', { modules: false }]],
+      }),
+    ),
     commonjs(),
   ],
   external: id => !!reg && reg.test(id),

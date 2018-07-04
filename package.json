@@ -20,14 +20,18 @@
     "preversion": "git checkout master && yarn precommit",
     "postversion": "git push --follow-tags"
   },
+  "dependencies": {
+    "core-js": "^2.5.7"
+  },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
+    "@babel/preset-env": "^7.0.0-beta.51",
+    "@babel/preset-flow": "^7.0.0-beta.51",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.5",
     "babel-jest": "^23.2.0",
-    "babel-plugin-transform-builtin-extend": "^1.1.2",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-flow": "^6.23.0",
+    "babel-merge": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-config-prettier": "^2.9.0",
@@ -41,7 +45,7 @@
     "markdownlint": "^0.10.0",
     "prettier": "^1.13.7",
     "rollup": "^0.62.0",
-    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-babel": "^4.0.0-beta.7",
     "rollup-plugin-commonjs": "^9.1.3",
     "shx": "^0.3.1"
   },
