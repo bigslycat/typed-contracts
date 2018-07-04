@@ -1,15 +1,21 @@
-extends:
-  - airbnb-base
-  - plugin:flowtype/recommended
+parser: babel-eslint
 
 plugins:
   - flowtype
+  - prettier
+
+extends:
+  - airbnb-base
+  - plugin:flowtype/recommended
+  - plugin:prettier/recommended
 
 env:
   node: true
   browser: false
 
 rules:
+
+  prettier/prettier: error
 
   no-multi-assign: off
 
@@ -18,10 +24,6 @@ rules:
     - except-parens
 
   no-confusing-arrow: off
-
-  semi:
-    - error
-    - never
 
   consistent-return: off
 
@@ -70,10 +72,6 @@ rules:
     - error
     - never
     - annotationStyle: block
-
-  flowtype/semi:
-    - error
-    - never
 
   flowtype/space-after-type-colon:
     - error
