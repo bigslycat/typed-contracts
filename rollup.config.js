@@ -23,6 +23,7 @@ export default {
   output: {
     file: 'lib/bundle.js',
     format: 'cjs',
+    banner,
   },
   plugins: [
     babel(
@@ -35,5 +36,4 @@ export default {
     commonjs(),
   ],
   external: id => !!reg && reg.test(id),
-  banner,
 };
