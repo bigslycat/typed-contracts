@@ -5,7 +5,7 @@ import { createContract, type Contract } from '../createContract';
 
 export const array = <T>(
   contract: (valueName: string, value: mixed) => ValidationError | T,
-): Contract<T[]> =>
+): Contract<$ReadOnlyArray<T>> =>
   createContract(
     (valueName, value): any => {
       if (!Array.isArray(value))

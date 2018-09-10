@@ -16,7 +16,7 @@ export const object = <
     if (!value || typeof value !== 'object' || Array.isArray(value))
       return ValidationError.of(valueName, value, 'Object');
 
-    const keys: $Keys<S>[] = Object.keys(spec);
+    const keys: $ReadOnlyArray<$Keys<S>> = Object.keys(spec);
 
     for (let index = 0; index < keys.length; index += 1) {
       const keyName = keys[index];

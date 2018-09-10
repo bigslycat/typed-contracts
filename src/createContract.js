@@ -2,23 +2,30 @@
 
 import { ValidationError } from './ValidationError';
 
-type ValidateNamed<T> = (value: mixed, ...rest: void[]) => ValidationError | T;
+type ValidateNamed<+T> = (
+  value: mixed,
+  ...rest: $ReadOnlyArray<void>
+) => ValidationError | T;
 
-type Validate<T> = (
+type Validate<+T> = (
   valueName: string,
   value: mixed,
-  ...rest: void[]
+  ...rest: $ReadOnlyArray<void>
 ) => T | ValidationError;
 
-export type Contract<T> = {
-  (valueName: string, value: mixed, ...rest: void[]): T | ValidationError,
+export type Contract<+T> = {
+  (
+    valueName: string,
+    value: mixed,
+    ...rest: $ReadOnlyArray<void>
+  ): T | ValidationError,
   +maybe: Validate<?T>,
   +optional: Validate<void | T>,
 
   +bindName: (
     valueName: string,
   ) => {
-    (value: mixed, ...rest: void[]): ValidationError | T,
+    (value: mixed, ...rest: $ReadOnlyArray<void>): ValidationError | T,
     +maybe: ValidateNamed<?T>,
     +optional: ValidateNamed<void | T>,
   },

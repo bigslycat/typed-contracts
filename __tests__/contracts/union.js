@@ -3,8 +3,10 @@
 import { isUnion } from '../../src/contracts/union';
 import { ValidationError } from '../../src/ValidationError';
 
-const createError = (...types: string[]) => (name: string, value: mixed) =>
-  ValidationError.of(name, value, ...types);
+const createError = (...types: $ReadOnlyArray<string>) => (
+  name: string,
+  value: mixed,
+) => ValidationError.of(name, value, ...types);
 
 describe('isUnion', () => {
   describe('Creates new Contract for one or more other contracts or validation functions', () => {

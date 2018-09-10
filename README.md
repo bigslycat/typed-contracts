@@ -44,29 +44,29 @@ namedContract.optional(invalidValue)        // => ValidationError instance
 /* @flow */
 
 const {
-  isArray, isLiteral, isObject,
-  isString, isUnion, ValidationError
+  array, object, string,
+  union, ValidationError,
 } = require('typed-contracts')
 
 type Person = {
   name: string,
   gender: 'm' | 'f',
-  friends: Person[],
-  email?: string,
+  friends: $ReadOnlyArray<Person>,
+  email?: string | $ReadOnlyArray<string>,
 }
 
-// isPerson returns Person-compatibile value or ValidationError
-const isPerson = isObject({
-  name: isString,
-  gender: isUnion(isLiteral('m'), isLiteral('f')),
-  friends: isArray((valueName, value) => isPerson(valueName, value)),
-  email: isString.optional,
+// person returns Person-compatible value or ValidationError
+const person = object({
+  name: string,
+  gender: union('m', 'f'),
+  friends: array((valueName, value) => person(valueName, value)),
+  email: union(string, array(string)).optional,
 })
 
 // We need to control compatibility of the return value type with Person
 const userValidate =
   (value: mixed): Person | ValidationError =>
-    isPerson('user', value)
+    person('user', value)
 
 const user = userValidate({ name: 'Vasya' })
 ```

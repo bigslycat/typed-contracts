@@ -5,21 +5,15 @@ import { createContract, type Contract } from '../createContract';
 
 import { literal } from './literal';
 
-type UnionContract = <T>(
-  ...rules: Array<
-    | string
-    | number
-    | boolean
-    | ((name: string, value: mixed) => ValidationError | T),
+type UnionContract = <T, L: string | number | boolean>(
+  ...rules: $ReadOnlyArray<
+    ((name: string, value: mixed) => ValidationError | T) | L,
   >
-) => Contract<T>;
+) => Contract<T | L>;
 
-export const union: UnionContract = /* :: <T> */ (
-  ...rules: Array<
-    | string
-    | number
-    | boolean
-    | ((name: string, value: mixed) => ValidationError | T),
+export const union: UnionContract = /* :: <T, L: string | number | boolean> */ (
+  ...rules: $ReadOnlyArray<
+    ((name: string, value: mixed) => ValidationError | T) | L,
   >
 ): any => {
   const contracts = rules.map(
@@ -29,14 +23,14 @@ export const union: UnionContract = /* :: <T> */ (
   const unionContract = (name, value: any): ValidationError | T => {
     const errors = contracts
       .map(contract => contract(name, value))
-      .reduce((scope, error): ValidationError[] => {
+      .reduce((scope, error) => {
         if (error instanceof ValidationError) scope.push(error);
         return scope;
       }, []);
 
     if (errors.length !== contracts.length) return value;
 
-    const types = errors.reduce((scope, { expectedTypes }): string[] => {
+    const types = errors.reduce((scope, { expectedTypes }) => {
       for (let i = 0; i < expectedTypes.length; i += 1) {
         scope.push(expectedTypes[i]);
       }

@@ -12,7 +12,7 @@ const valueToString = (value: mixed): string => {
   }
 };
 
-const typesToString = (expectedTypes: string[]): string =>
+const typesToString = (expectedTypes: $ReadOnlyArray<string>): string =>
   expectedTypes
     .slice(0, -2)
     .concat(expectedTypes.slice(-2).join(' or '))
@@ -23,7 +23,7 @@ export class ValidationError extends TypeError {
     valueName: string,
     value: mixed,
     expectedType: string,
-    ...otherExpectedTypes: string[]
+    ...otherExpectedTypes: $ReadOnlyArray<string>
   ) {
     return new ValidationError(
       valueName,
@@ -35,7 +35,7 @@ export class ValidationError extends TypeError {
 
   +valueName: string;
 
-  +expectedTypes: string[];
+  +expectedTypes: $ReadOnlyArray<string>;
 
   +value: mixed;
 
@@ -43,7 +43,7 @@ export class ValidationError extends TypeError {
     valueName: string,
     value: mixed,
     expectedType: string,
-    ...otherExpectedTypes: string[]
+    ...otherExpectedTypes: $ReadOnlyArray<string>
   ) {
     super();
 
