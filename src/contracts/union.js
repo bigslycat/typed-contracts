@@ -3,13 +3,24 @@
 import { ValidationError } from '../ValidationError';
 import { createContract, type Contract } from '../createContract';
 
+import { literal } from './literal';
+
 type UnionContract = <T>(
   ...contracts: Array<(name: string, value: mixed) => ValidationError | T>
 ) => Contract<T>;
 
 export const union: UnionContract = /* :: <T> */ (
-  ...contracts: Array<(name: string, value: mixed) => ValidationError | T>
+  ...riles: Array<
+    | string
+    | number
+    | boolean
+    | ((name: string, value: mixed) => ValidationError | T),
+  >
 ): any => {
+  const contracts = riles.map(
+    rule => (typeof rule == 'function' ? rule : literal(rule)),
+  );
+
   const unionContract = (name, value: any): ValidationError | T => {
     const errors = contracts
       .map(contract => contract(name, value))
