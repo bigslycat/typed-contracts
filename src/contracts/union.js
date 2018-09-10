@@ -7,7 +7,7 @@ type UnionContract = <T>(
   ...contracts: Array<(name: string, value: mixed) => ValidationError | T>
 ) => Contract<T>;
 
-export const isUnion: UnionContract = /* :: <T> */ (
+export const union: UnionContract = /* :: <T> */ (
   ...contracts: Array<(name: string, value: mixed) => ValidationError | T>
 ): any => {
   const unionContract = (name, value: any): ValidationError | T => {
@@ -32,3 +32,10 @@ export const isUnion: UnionContract = /* :: <T> */ (
 
   return createContract(unionContract);
 };
+
+export const isUnion = union;
+export const passUnion = union;
+
+export const uni = union;
+export const isUni = union;
+export const passUni = union;

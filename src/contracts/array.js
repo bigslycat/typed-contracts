@@ -3,7 +3,7 @@
 import { ValidationError } from '../ValidationError';
 import { createContract, type Contract } from '../createContract';
 
-export const isArray = <T>(
+export const array = <T>(
   contract: (valueName: string, value: mixed) => ValidationError | T,
 ): Contract<T[]> =>
   createContract(
@@ -19,3 +19,10 @@ export const isArray = <T>(
       return value;
     },
   );
+
+export const isArray = array;
+export const passArray = array;
+
+export const arr = array;
+export const isArr = array;
+export const passArr = array;

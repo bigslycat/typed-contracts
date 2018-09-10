@@ -3,7 +3,7 @@
 import { ValidationError } from '../ValidationError';
 import { createContract, type Contract } from '../createContract';
 
-export const isLiteral = <T: string | number | boolean>(
+export const literal = <T: string | number | boolean>(
   expected: T,
 ): Contract<T> =>
   createContract(
@@ -12,3 +12,10 @@ export const isLiteral = <T: string | number | boolean>(
       return ValidationError.of(valueName, value, JSON.stringify(expected));
     },
   );
+
+export const isLiteral = literal;
+export const passLiteral = literal;
+
+export const lit = literal;
+export const isLit = literal;
+export const passLit = literal;

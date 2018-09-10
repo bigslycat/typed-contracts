@@ -7,7 +7,7 @@ type ExtractReturnType = <T>(
   (valueName: string, value: any) => ValidationError | T,
 ) => $Supertype<T>;
 
-export const isObject = <
+export const object = <
   S: { [prop: string]: (valueName: string, value: mixed) => any },
 >(
   spec: S,
@@ -29,3 +29,10 @@ export const isObject = <
 
     return value;
   });
+
+export const isObject = object;
+export const passObject = object;
+
+export const obj = object;
+export const isObj = object;
+export const passObj = object;
