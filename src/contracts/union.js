@@ -6,7 +6,12 @@ import { createContract, type Contract } from '../createContract';
 import { literal } from './literal';
 
 type UnionContract = <T>(
-  ...contracts: Array<(name: string, value: mixed) => ValidationError | T>
+  ...contracts: Array<
+    | string
+    | number
+    | boolean
+    | ((name: string, value: mixed) => ValidationError | T),
+  >
 ) => Contract<T>;
 
 export const union: UnionContract = /* :: <T> */ (
