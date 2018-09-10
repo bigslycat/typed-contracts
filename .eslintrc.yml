@@ -6,7 +6,6 @@ plugins:
 
 extends:
   - airbnb-base
-  - plugin:flowtype/recommended
   - plugin:prettier/recommended
 
 env:
@@ -17,81 +16,27 @@ rules:
 
   prettier/prettier: error
 
-  no-multi-assign: off
-
-  no-return-assign:
-    - error
-    - except-parens
-
-  no-confusing-arrow: off
-
+  eqeqeq: [error, smart]
+  no-dupe-keys: error
+  no-return-assign: off
   consistent-return: off
 
-  no-unused-expressions: off
-
-  object-curly-newline:
-    - error
-    - consistent: true
-
-  function-paren-newline:
-    - error
-    - consistent
-
   import/prefer-default-export: off
-
-
-  flowtype/boolean-style:
-    - error
-    - boolean
+  import/no-extraneous-dependencies: off
 
   flowtype/define-flow-type: error
-
-  flowtype/delimiter-dangle:
-    - error
-    - always-multiline
-
-  flowtype/generic-spacing:
-    - error
-    - never
-
   flowtype/no-dupe-keys: error
-
+  flowtype/no-flow-fix-me-comments: off
+  flowtype/no-mutable-array: off
   flowtype/no-primitive-constructor-types: error
-
-  flowtype/no-weak-types:
-    - error
-    - any: false
-      Object: false
-      Function: true
-
-  flowtype/object-type-delimiter:
-    - error
-    - comma
-
-  flowtype/require-valid-file-annotation:
-    - error
-    - never
-    - annotationStyle: block
-
-  flowtype/space-after-type-colon:
-    - error
-    - always
-    - allowLineBreak: false
-
-  flowtype/space-before-generic-bracket:
-    - error
-    - never
-
-  flowtype/space-before-type-colon:
-    - error
-    - never
-
-  flowtype/type-id-match:
-    - error
-    - ^[A-Z]
-
-  flowtype/union-intersection-spacing:
-    - error
-    - always
-
+  flowtype/no-types-missing-file-annotation: error
+  flowtype/no-unused-expressions: off
+  flowtype/no-weak-types: off
+  flowtype/require-exact-type: off
+  flowtype/require-parameter-type: [off, { excludeParameterMatch: '^_[0-9]*$' }]
+  flowtype/require-return-type: off
+  flowtype/require-valid-file-annotation: [error, never, { annotationStyle: block }]
+  flowtype/require-variable-type: off
+  flowtype/sort-keys: off
+  flowtype/type-id-match: [error, '^[A-Z][a-z0-9]*']
   flowtype/use-flow-type: error
