@@ -2,7 +2,15 @@
 
 const valueToString = (value: mixed): string => {
   if (Number.isNaN(value)) return 'NaN';
+  if (typeof value == 'function') return '[Function]';
+  // $FlowFixMe
+  if (typeof value == 'symbol') return value.toString();
+
   switch (value) {
+    case Infinity:
+      return Infinity.toString();
+    case -Infinity:
+      return (-Infinity).toString();
     case undefined:
       return 'undefined';
     case null:
