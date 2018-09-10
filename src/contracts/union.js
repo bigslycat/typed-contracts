@@ -6,7 +6,7 @@ import { createContract, type Contract } from '../createContract';
 import { literal } from './literal';
 
 type UnionContract = <T>(
-  ...contracts: Array<
+  ...rules: Array<
     | string
     | number
     | boolean
@@ -15,14 +15,14 @@ type UnionContract = <T>(
 ) => Contract<T>;
 
 export const union: UnionContract = /* :: <T> */ (
-  ...riles: Array<
+  ...rules: Array<
     | string
     | number
     | boolean
     | ((name: string, value: mixed) => ValidationError | T),
   >
 ): any => {
-  const contracts = riles.map(
+  const contracts = rules.map(
     rule => (typeof rule == 'function' ? rule : literal(rule)),
   );
 
