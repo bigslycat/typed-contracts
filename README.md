@@ -122,6 +122,22 @@ contracts in spec.
 (spec: { [key: string] (valueName: string, value: mixed) => (ValidationError | T) }) => Contract
 ```
 
+### `objectOf`
+
+Aliases: `isObjectOf`, `passObjectOf`, `objOf`, `isObjOf`, `passObjOf`.
+
+Creates a contract that expects an object whose properties are validated by the corresponding
+contracts in spec.
+
+```js
+(...contracts: Array<
+  | string
+  | number
+  | boolean
+  | ((valueName: string, value: mixed) => ValidationError | T),
+>) => Contract
+```
+
 ### `string`
 
 Aliases: `isString`, `passString`, `str`, `isStr`, `passStr`.
