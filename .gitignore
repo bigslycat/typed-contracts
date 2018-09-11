@@ -1,6 +1,5 @@
 /node_modules
-/lib/*
-!/lib/bundle.js.flow
+/lib
 /coverage
 *.log
 *.log-*

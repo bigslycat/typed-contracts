@@ -46,7 +46,9 @@
     "prettier": "^1.14.2",
     "rollup": "^0.65.2",
     "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-commonjs": "^9.1.6",
+    "rollup-plugin-flow-entry": "^0.2.0",
     "shx": "^0.3.2"
   },
   "repository": {

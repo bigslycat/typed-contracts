@@ -1,6 +1,8 @@
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import merge from 'babel-merge';
+import flowEntry from 'rollup-plugin-flow-entry';
+import clear from 'rollup-plugin-clear';
 
 import packageJson from './package.json';
 
@@ -26,6 +28,10 @@ export default {
     banner,
   },
   plugins: [
+    clear({
+      targets: ['lib'],
+    }),
+    flowEntry(),
     babel(
       merge(babelConfig, {
         babelrc: false,
