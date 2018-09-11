@@ -90,7 +90,7 @@ Aliases: `isLiteral`, `passLiteral`, `lit`, `isLit`, `passLit`.
 Creates a contract that expects a specific string, number or boolean value.
 
 ```js
-(expected: string | number) => Contract
+(expected: string | number | boolean) => Contract
 ```
 
 ### `nul`
