@@ -3,10 +3,14 @@
 import { ValidationError } from '../ValidationError';
 import { createContract, type Contract } from '../createContract';
 
+import { union } from './union';
+
 export const array = <T>(
-  contract: (valueName: string, value: mixed) => ValidationError | T,
-): Contract<$ReadOnlyArray<T>> =>
-  createContract(
+  ...rules: $ReadOnlyArray<(name: string, value: mixed) => ValidationError | T>
+): Contract<$ReadOnlyArray<T>> => {
+  const contract = union(...rules);
+
+  return createContract(
     (valueName, value): any => {
       if (!Array.isArray(value))
         return ValidationError.of(valueName, value, 'Array');
@@ -19,6 +23,7 @@ export const array = <T>(
       return value;
     },
   );
+};
 
 export const isArray = array;
 export const passArray = array;

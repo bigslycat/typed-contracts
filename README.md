@@ -80,7 +80,9 @@ Aliases: `isArray`, `passArray`, `arr`, `isArr`, `passArr`.
 Creates a contract that expects an array of values that are validated by the initial contract.
 
 ```js
-(contract: (valueName: string, value: mixed) => (ValidationError | T)) => Contract
+(...contracts: Array<
+  (valueName: string, value: mixed) => ValidationError | T,
+>) => Contract
 ```
 
 ### `literal`
