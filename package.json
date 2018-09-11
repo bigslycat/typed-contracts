@@ -1,6 +1,6 @@
 {
   "name": "typed-contracts",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Validation with good type inference (Flow support)",
   "main": "lib/bundle.js",
   "files": [
