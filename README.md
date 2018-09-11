@@ -73,7 +73,9 @@ const user = userValidate({ name: 'Vasya' })
 
 ## Contracts API
 
-### `isArray`
+### `array`
+
+Aliases: `isArray`, `passArray`, `arr`, `isArr`, `passArr`.
 
 Creates a contract that expects an array of values that are validated by the initial contract.
 
@@ -81,7 +83,9 @@ Creates a contract that expects an array of values that are validated by the ini
 (contract: (valueName: string, value: mixed) => (ValidationError | T)) => Contract
 ```
 
-### `isLiteral`
+### `literal`
+
+Aliases: `isLiteral`, `passLiteral`, `lit`, `isLit`, `passLit`.
 
 Creates a contract that expects a specific string, number or boolean value.
 
@@ -89,19 +93,27 @@ Creates a contract that expects a specific string, number or boolean value.
 (expected: string | number) => Contract
 ```
 
-### `isNull`
+### `nul`
+
+Aliases: `isNull`, `passNull`.
 
 Creates a contract that expects null.
 
-### `isNumber`
+### `number`
+
+Aliases: `isNumber`, `passNumber`, `num`, `isNum`, `passNum`.
 
 Creates a contract that expects number.
 
-### `isBoolean`
+### `boolean`
+
+Aliases: `isBoolean`, `passBoolean`, `bool`, `isBool`, `passBool`.
 
 Creates a contract that expects boolean.
 
-### `isObject`
+### `object`
+
+Aliases: `isObject`, `passObject`, `obj`, `isObj`, `passObj`.
 
 Creates a contract that expects an object whose properties are validated by the corresponding
 contracts in spec.
@@ -110,19 +122,30 @@ contracts in spec.
 (spec: { [key: string] (valueName: string, value: mixed) => (ValidationError | T) }) => Contract
 ```
 
-### `isString`
+### `string`
+
+Aliases: `isString`, `passString`, `str`, `isStr`, `passStr`.
 
 Creates a contract that expects string.
 
-### `isUnion`
+### `union`
+
+Aliases: `isUnion`, `passUnion`, `uni`, `isUni`, `passUni`.
 
 Creates a contract that expects value, validating one of the initial contracts.
 
 ```js
-(...contracts: Array<(valueName: string, value: mixed) => (ValidationError | T)>) => Contract
+(...contracts: Array<
+  | string
+  | number
+  | boolean
+  | ((valueName: string, value: mixed) => ValidationError | T),
+>) => Contract
 ```
 
-### `isVoid` or `isUndefined`
+### `undef`
+
+Aliases: `isUndefined`, `passUndefined`, `isUndef`, `passUndef`, `isVoid`, `passVoid`.
 
 Creates a contract that expects undefined.
 
