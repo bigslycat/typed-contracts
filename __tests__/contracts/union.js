@@ -6,7 +6,7 @@ import { ValidationError } from '../../src/ValidationError';
 const createError = (...types: $ReadOnlyArray<string>) => (
   name: string,
   value: mixed,
-) => ValidationError.of(name, value, ...types);
+) => new ValidationError(name, value, types);
 
 describe('isUnion', () => {
   describe('Creates new Contract for one or more other contracts or validation functions', () => {
@@ -21,7 +21,13 @@ describe('isUnion', () => {
       );
 
       expect(result).toBeInstanceOf(ValidationError);
-      expect(result.expectedTypes).toEqual(['type1', 'type2', 'type3']);
+      expect(result.expectedTypes).toEqual(['Union']);
+      expect(result.nested).toEqual([
+        new ValidationError('valueName', 'value', 'type1'),
+        new ValidationError('valueName', 'value', 'type2'),
+        new ValidationError('valueName', 'value', 'type3'),
+      ]);
+
       expect(validate1).lastCalledWith('valueName', 'value');
       expect(validate2).lastCalledWith('valueName', 'value');
       expect(validate3).lastCalledWith('valueName', 'value');

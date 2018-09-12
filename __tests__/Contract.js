@@ -1,10 +1,10 @@
 /* @flow */
 
-import { createContract } from '../src/createContract';
+import { of } from '../src/Contract';
 
 const createMock = result => {
   const validate = jest.fn().mockReturnValue(result);
-  const contract = createContract(validate);
+  const contract = of(validate);
   return { validate, contract };
 };
 
@@ -65,7 +65,7 @@ describe('createContract', () => {
           it('Can be called and returns validate function result', () => {
             const { validate, contract } = createMock('result');
 
-            expect(contract.bindName('valueName')('value')).toBe('result');
+            expect(contract('valueName')('value')).toBe('result');
             expect(validate).lastCalledWith('valueName', 'value');
           });
         });
@@ -74,25 +74,21 @@ describe('createContract', () => {
           it('Returns null if value equals null', () => {
             const { validate, contract } = createMock('result');
 
-            expect(contract.bindName('valueName').maybe(null)).toBe(null);
+            expect(contract('valueName').maybe(null)).toBe(null);
             expect(validate).toHaveBeenCalledTimes(0);
           });
 
           it('Returns undefined if value equals undefined', () => {
             const { validate, contract } = createMock('result');
 
-            expect(contract.bindName('valueName').maybe(undefined)).toBe(
-              undefined,
-            );
+            expect(contract('valueName').maybe(undefined)).toBe(undefined);
             expect(validate).toHaveBeenCalledTimes(0);
           });
 
           it('Returns validation result in other cases', () => {
             const { validate, contract } = createMock('result');
 
-            expect(contract.bindName('valueName').maybe('value')).toBe(
-              'result',
-            );
+            expect(contract('valueName').maybe('value')).toBe('result');
             expect(validate).lastCalledWith('valueName', 'value');
           });
         });
@@ -101,23 +97,17 @@ describe('createContract', () => {
           it('Returns undefined if value equals undefined', () => {
             const { validate, contract } = createMock('result');
 
-            expect(contract.bindName('valueName').optional(undefined)).toBe(
-              undefined,
-            );
+            expect(contract('valueName').optional(undefined)).toBe(undefined);
             expect(validate).toHaveBeenCalledTimes(0);
           });
 
           it('Returns validation result in other cases', () => {
             const { validate, contract } = createMock('result');
 
-            expect(contract.bindName('valueName').optional(null)).toBe(
-              'result',
-            );
+            expect(contract('valueName').optional(null)).toBe('result');
             expect(validate).lastCalledWith('valueName', null);
 
-            expect(contract.bindName('valueName').optional('value')).toBe(
-              'result',
-            );
+            expect(contract('valueName').optional('value')).toBe('result');
             expect(validate).lastCalledWith('valueName', 'value');
           });
         });

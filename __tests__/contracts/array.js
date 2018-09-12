@@ -6,7 +6,7 @@ import { ValidationError } from '../../src/ValidationError';
 const createError = (...types: $ReadOnlyArray<string>) => (
   name: string,
   value: mixed,
-) => ValidationError.of(name, value, ...types);
+) => new ValidationError(name, value, types);
 
 describe('isArray', () => {
   describe('Creates new Contract for one Contracts or validation function', () => {
@@ -36,8 +36,12 @@ describe('isArray', () => {
       const result: any = isArray(validate)('valueName', [1, 2, 3]);
 
       expect(result).toBeInstanceOf(ValidationError);
-      expect(result.expectedTypes).toEqual(['type']);
-      expect(validate.mock.calls).toEqual([['valueName[0]', 1]]);
+      expect(result.expectedTypes).toEqual(['Array']);
+      expect(validate.mock.calls).toEqual([
+        ['valueName[0]', 1],
+        ['valueName[1]', 2],
+        ['valueName[2]', 3],
+      ]);
     });
   });
 });

@@ -6,7 +6,7 @@ import { ValidationError } from '../../src/ValidationError';
 const createError = (...types: $ReadOnlyArray<string>) => (
   name: string,
   value: mixed,
-) => ValidationError.of(name, value, ...types);
+) => new ValidationError(name, value, types);
 
 describe('isObject', () => {
   describe('Creates new Contract for spec object of Contracts or validation function', () => {
@@ -56,7 +56,6 @@ describe('isObject', () => {
       const result: any = isObject(spec)('valueName', value);
 
       expect(result).toBeInstanceOf(ValidationError);
-      expect(result.expectedTypes).toEqual(['type']);
     });
   });
 });
