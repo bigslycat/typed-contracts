@@ -17,7 +17,7 @@
     "test": "jest --env=node",
     "build": "rollup -c",
     "precommit": "yarn lint && yarn flow && yarn test",
-    "preversion": "git checkout master && yarn precommit",
+    "preversion": "git checkout v0 && yarn precommit",
     "postversion": "git push --follow-tags"
   },
   "dependencies": {
