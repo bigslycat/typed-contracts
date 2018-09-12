@@ -1,31 +1,43 @@
 /* @flow */
 
 import { ValidationError } from '../../ValidationError';
-import { createContract, type Contract } from '../../createContract';
+import * as contract from '../../Contract';
 
-import { literal } from '../literal';
+import { union } from '../union';
 
-import { handler } from './handler';
+import { ObjectValidationError } from './ObjectValidationError';
 
 type ObjectOf = <T, L: string | number | boolean>(
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
-) => Contract<{ [string]: T | L }>;
+) => contract.Contract<{ [string]: T | L }>;
 
 export const objectOf: ObjectOf = <T, L: string | number | boolean>(
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
-): Contract<{ [string]: T | L }> =>
-  createContract(
-    handler(
-      Object.entries(rules).reduce((acc, [key, rule]: any) => {
-        acc[key] = typeof rule == 'function' ? rule : literal(rule);
+): contract.Contract<{ [string]: T | L }> => {
+  const validate = union(...rules);
+
+  return contract.of(
+    (valueName, value): any => {
+      if (!value || typeof value != 'object' || Array.isArray(value)) {
+        return new ValidationError(valueName, value, 'Object');
+      }
+
+      const errors = Object.entries(value).reduce((acc, [key, val]) => {
+        const result = validate(`${valueName}.${key}`, val);
+        if (result instanceof ValidationError) acc.push(result);
         return acc;
-      }, {}),
-    ),
+      }, []);
+
+      return errors.length
+        ? new ObjectValidationError(valueName, value, errors)
+        : value;
+    },
   );
+};
 
 export const isObjectOf = objectOf;
 export const passObjectOf = objectOf;
