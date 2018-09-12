@@ -1,7 +1,7 @@
 /* @flow */
 
 import { ValidationError } from '../ValidationError';
-import { createContract, type Contract } from '../createContract';
+import * as contract from '../Contract';
 
 import { literal } from './literal';
 
@@ -9,38 +9,42 @@ type UnionContract = <T, L: string | number | boolean>(
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
-) => Contract<T | L>;
+) => contract.Contract<T | L>;
+
+export class UnionError extends ValidationError {
+  constructor(
+    valueName: string,
+    value: mixed,
+    errors: $ReadOnlyArray<ValidationError>,
+  ) {
+    super(valueName, value, 'Union', errors);
+    this.name = 'UnionError';
+  }
+}
 
 export const union: UnionContract = /* :: <T, L: string | number | boolean> */ (
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
 ): any => {
-  const contracts = rules.map(
+  const validators = rules.map(
     rule => (typeof rule == 'function' ? rule : literal(rule)),
   );
 
   const unionContract = (name, value: any): ValidationError | T => {
-    const errors = contracts
-      .map(contract => contract(name, value))
+    const errors = validators
+      .map(validate => validate(name, value))
       .reduce((scope, error) => {
         if (error instanceof ValidationError) scope.push(error);
         return scope;
       }, []);
 
-    if (errors.length !== contracts.length) return value;
-
-    const types = errors.reduce((scope, { expectedTypes }) => {
-      for (let i = 0; i < expectedTypes.length; i += 1) {
-        scope.push(expectedTypes[i]);
-      }
-      return scope;
-    }, []);
-
-    return (ValidationError.of: any)(name, value, ...types);
+    return errors.length < validators.length
+      ? value
+      : new UnionError(name, value, errors);
   };
 
-  return createContract(unionContract);
+  return contract.of(unionContract);
 };
 
 export const isUnion = union;
