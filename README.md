@@ -19,23 +19,42 @@ yarn: `yarn add typed-contracts`
 All contracts have this interface:
 
 ```js
-contract('my value', validValiue)           // => validValiue
-contract('my value', invalidValue)          // => ValidationError instance
-contract.maybe('my value', null)            // => null
-contract.maybe('my value', undefined)       // => undefined
-contract.maybe('my value', invalidValue)    // => ValidationError instance
-contract.optional('my value', undefined)    // => undefined
-contract.optional('my value', invalidValue) // => ValidationError instance
+type Contract<T> = {
+  (valueName: string): {
+    (value: mixed): ValidationError | T,
+    optional(value: mixed): ValidationError | void | T,
+    maybe(value: mixed): ValidationError | ?T,
+  },
 
-const namedContract = contract.bindName('my value')
+  (valueName: string, value: mixed): ValidationError | T,
 
-namedContract(validValiue)                  // => validValiue
-namedContract(invalidValue)                 // => ValidationError instance
-namedContract.maybe(null)                   // => null
-namedContract.maybe(undefined)              // => undefined
-namedContract.maybe(invalidValue)           // => ValidationError instance
-namedContract.optional(undefined)           // => undefined
-namedContract.optional(invalidValue)        // => ValidationError instance
+  optional(valueName: string): (value: mixed) => ValidationError | void | T,
+  optional(valueName: string, value: mixed): ValidationError | void | T,
+
+  maybe(valueName: string): (value: mixed) => ValidationError | ?T,
+  maybe(valueName: string, value: mixed): ValidationError | ?T,
+}
+```
+
+Interface usage:
+
+```js
+contract('my value', value)               // => ValidationError | ValidValue
+contract.maybe('my value', null)          // => null
+contract.maybe('my value', undefined)     // => undefined
+contract.maybe('my value', value)         // => ValidationError | ValidValue
+contract.optional('my value', undefined)  // => undefined
+contract.optional('my value', value)      // => ValidationError | ValidValue
+```
+
+Contracts are curried:
+
+```js
+contract('my value')(value)
+contract('my value').maybe(value)
+contract('my value').optional(value)
+contract.maybe('my value')(value)
+contract.optional('my value')(value)
 ```
 
 ## Contracts can be combined
@@ -64,9 +83,9 @@ const person = object({
 })
 
 // We need to control compatibility of the return value type with Person
-const userValidate =
-  (value: mixed): Person | ValidationError =>
-    person('user', value)
+const userValidate:
+  (value: mixed) => Person | ValidationError =
+    person('user')
 
 const user = userValidate({ name: 'Vasya' })
 ```
