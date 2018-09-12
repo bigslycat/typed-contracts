@@ -22,7 +22,6 @@ export const object = <
   S: { [prop: string]: (valueName: string, value: mixed) => any },
 >(
   spec: S,
-  // exact?: boolean,
 ): contract.Contract<$ObjMap<S, ExtractReturnType>> =>
   contract.of((valueName, value) => {
     if (!value || typeof value != 'object' || Array.isArray(value)) {
@@ -31,31 +30,14 @@ export const object = <
 
     const errors = Object.entries(spec).reduce(
       (acc, [key, validate]: [string, any]) => {
-        const val = value[key];
+        const result = validate(`${valueName}.${key}`, value[key]);
 
-        if (validate) {
-          const result = validate(`${valueName}.${key}`, val);
-          if (result instanceof ValidationError) acc.push(result);
-        }
+        if (result instanceof ValidationError) acc.push(result);
+
         return acc;
       },
       [],
     );
-
-    // const errors: $ReadOnlyArray<ValidationError> = Object.entries(
-    //   value,
-    // ).reduce((acc, [key, val]) => {
-    //   const validate = spec[key];
-
-    //   if (validate) {
-    //     const result = validate(`${valueName}.${key}`, val);
-
-    //     console.log({ key, val, t: typeof result });
-    //     if (result instanceof ValidationError) acc.push(result);
-    //   }
-
-    //   return acc;
-    // }, []);
 
     return errors.length
       ? new ObjectValidationError(valueName, value, errors)
