@@ -1,11 +1,11 @@
 /* @flow */
 
 import { ValidationError } from '../ValidationError';
-import { createContract } from '../createContract';
+import * as contract from '../Contract';
 
-export const undef = createContract(
-  (name: string, value: mixed): void | ValidationError =>
-    value === undefined ? value : ValidationError.of(name, value, 'void'),
+export const undef: contract.Contract<void> = contract.of(
+  (name, value) =>
+    value === undefined ? value : new ValidationError(name, value, 'void'),
 );
 
 export const isUndefined = undef;

@@ -1,13 +1,13 @@
 /* @flow */
 
 import { ValidationError } from '../ValidationError';
-import { createContract } from '../createContract';
+import * as contract from '../Contract';
 
-export const boolean = createContract(
-  (name: string, value: mixed): boolean | ValidationError =>
-    typeof value === 'boolean'
+export const boolean: contract.Contract<boolean> = contract.of(
+  (name, value) =>
+    typeof value == 'boolean'
       ? value
-      : ValidationError.of(name, value, 'boolean'),
+      : new ValidationError(name, value, 'boolean'),
 );
 
 export const isBoolean = boolean;

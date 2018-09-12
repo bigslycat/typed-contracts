@@ -1,13 +1,13 @@
 /* @flow */
 
 import { ValidationError } from '../ValidationError';
-import { createContract } from '../createContract';
+import * as contract from '../Contract';
 
-export const number = createContract(
-  (name: string, value: mixed): number | ValidationError =>
-    typeof value === 'number'
+export const number: contract.Contract<number> = contract.of(
+  (name, value) =>
+    typeof value == 'number'
       ? value
-      : ValidationError.of(name, value, 'number'),
+      : new ValidationError(name, value, 'number'),
 );
 
 export const isNumber = number;

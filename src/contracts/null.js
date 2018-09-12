@@ -1,11 +1,11 @@
 /* @flow */
 
 import { ValidationError } from '../ValidationError';
-import { createContract } from '../createContract';
+import * as contract from '../Contract';
 
-export const nul = createContract(
-  (name: string, value: mixed): null | ValidationError =>
-    value === null ? value : ValidationError.of(name, value, 'null'),
+export const nul: contract.Contract<null> = contract.of(
+  (name, value) =>
+    value === null ? value : new ValidationError(name, value, 'null'),
 );
 
 export const isNull = nul;
