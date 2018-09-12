@@ -1,26 +1,41 @@
 /* @flow */
 
 import { ValidationError } from '../ValidationError';
-import { createContract, type Contract } from '../createContract';
+import * as contract from '../Contract';
 
 import { union } from './union';
 
+export class ArrayValidationError extends ValidationError {
+  constructor(
+    valueName: string,
+    value: mixed,
+    errors: $ReadOnlyArray<ValidationError>,
+  ) {
+    super(valueName, value, 'Array', errors);
+    this.name = 'ArrayValidationError';
+  }
+}
+
 export const array = <T>(
   ...rules: $ReadOnlyArray<(name: string, value: mixed) => ValidationError | T>
-): Contract<$ReadOnlyArray<T>> => {
-  const contract = union(...rules);
+): contract.Contract<$ReadOnlyArray<T>> => {
+  const validate = rules.length === 1 ? rules[0] : union(...rules);
 
-  return createContract(
+  return contract.of(
     (valueName, value): any => {
-      if (!Array.isArray(value))
-        return ValidationError.of(valueName, value, 'Array');
-
-      for (let index = 0; index < value.length; index += 1) {
-        const result = contract(`${valueName}[${index}]`, value[index]);
-        if (result instanceof ValidationError) return result;
+      if (!Array.isArray(value)) {
+        return new ValidationError(valueName, value, 'Array');
       }
 
-      return value;
+      const errors = value.reduce((acc, item, index) => {
+        const result = validate(`${valueName}[${index}]`, item);
+        if (result instanceof ValidationError) acc.push(result);
+        return acc;
+      }, []);
+
+      return errors.length
+        ? new ArrayValidationError(valueName, value, errors)
+        : value;
     },
   );
 };
