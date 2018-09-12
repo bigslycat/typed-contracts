@@ -1,5 +1,5 @@
 /* @flow */
 
 export * from './contracts';
-export * from './createContract';
+export * from './Contract';
 export * from './ValidationError';
