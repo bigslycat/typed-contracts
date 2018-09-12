@@ -27,40 +27,33 @@ const typesToString = (expectedTypes: $ReadOnlyArray<string>): string =>
     .join(', ');
 
 export class ValidationError extends TypeError {
-  static of(
-    valueName: string,
-    value: mixed,
-    expectedType: string,
-    ...otherExpectedTypes: $ReadOnlyArray<string>
-  ) {
-    return new ValidationError(
-      valueName,
-      value,
-      expectedType,
-      ...otherExpectedTypes,
-    );
-  }
-
-  +valueName: string;
-
-  +expectedTypes: $ReadOnlyArray<string>;
-
-  +value: mixed;
+  /* :: +valueName: string; */
+  /* :: +expectedTypes: $ReadOnlyArray<string>; */
+  /* :: +value: mixed; */
+  /* :: +nested: $ReadOnlyArray<ValidationError>; */
 
   constructor(
     valueName: string,
     value: mixed,
-    expectedType: string,
-    ...otherExpectedTypes: $ReadOnlyArray<string>
+    expectedTypes: string | $ReadOnlyArray<string> = [],
+    nested?: $ReadOnlyArray<ValidationError> = [],
   ) {
     super();
 
     this.name = 'ValidationError';
     this.valueName = valueName;
     this.value = value;
-    this.expectedTypes = [expectedType].concat(otherExpectedTypes);
-    this.message = `${this.valueName} must be ${typesToString(
-      this.expectedTypes,
-    )}, but ${valueToString(value)} given`;
+    this.expectedTypes = [].concat(expectedTypes);
+    this.nested = nested;
+
+    if (this.expectedTypes.length) {
+      this.message = this.nested.length
+        ? `${this.expectedTypes[0]} ${this.valueName} have ${
+            this.nested.length
+          } nested validation errors`
+        : `\`${this.valueName}\` must be ${typesToString(
+            this.expectedTypes,
+          )}, but ${valueToString(value)} given`;
+    }
   }
 }
