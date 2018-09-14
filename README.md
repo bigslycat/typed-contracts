@@ -143,6 +143,12 @@ contracts in spec.
 (spec: { [key: string] (valueName: string, value: mixed) => (ValidationError | T) }) => Contract
 ```
 
+### `shape`
+
+```js
+(spec: { [key: string] (valueName: string, value: mixed) => (ValidationError | void | T) }) => Contract
+```
+
 ### `objectOf`
 
 Aliases: `isObjectOf`, `passObjectOf`, `objOf`, `isObjOf`, `passObjOf`.
