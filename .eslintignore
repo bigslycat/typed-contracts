@@ -1,7 +1,3 @@
 /lib
 /flow-typed/npm
 /coverage
-*.log
-*.log-*
-*.log_*
-*.log.*
