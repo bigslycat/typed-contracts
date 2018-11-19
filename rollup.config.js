@@ -17,20 +17,39 @@ const banner = `
  */
 `;
 
-export default {
-  input: 'src/index.js',
-  output: {
-    file: 'lib/bundle.js',
-    format: 'cjs',
-    banner,
+export default [
+  {
+    input: 'src/index.js',
+    output: {
+      file: 'lib/bundle.js',
+      format: 'cjs',
+      banner,
+    },
+    plugins: [
+      clear({
+        targets: ['lib'],
+      }),
+      flowEntry(),
+      babel(),
+      commonjs(),
+    ],
+    external: id => !!reg && reg.test(id),
   },
-  plugins: [
-    clear({
-      targets: ['lib'],
-    }),
-    flowEntry(),
-    babel(),
-    commonjs(),
-  ],
-  external: id => !!reg && reg.test(id),
-};
+  {
+    input: 'src/index.js',
+    output: {
+      file: 'esm/index.mjs',
+      format: 'esm',
+      banner,
+    },
+    plugins: [
+      clear({
+        targets: ['esm'],
+      }),
+      flowEntry(),
+      babel({ presets: [['@babel/env', { targets: { node: 10 } }]] }),
+      commonjs(),
+    ],
+    external: id => !!reg && reg.test(id),
+  },
+];
