@@ -3,11 +3,8 @@
 import { ValidationError } from '../ValidationError';
 import * as contract from '../Contract';
 
-export const string: contract.Contract<string> = contract.of(
-  (name, value) =>
-    typeof value == 'string'
-      ? value
-      : new ValidationError(name, value, 'string'),
+export const string: contract.Contract<string> = contract.of((name, value) =>
+  typeof value == 'string' ? value : new ValidationError(name, value, 'string'),
 );
 
 export const isString = string;

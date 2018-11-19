@@ -27,8 +27,8 @@ export const union: UnionContract = /* :: <T, L: string | number | boolean> */ (
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
 ): any => {
-  const validators = rules.map(
-    rule => (typeof rule == 'function' ? rule : literal(rule)),
+  const validators = rules.map(rule =>
+    typeof rule == 'function' ? rule : literal(rule),
   );
 
   const unionContract = (name, value: any): ValidationError | T => {

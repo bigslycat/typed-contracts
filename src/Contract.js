@@ -42,13 +42,12 @@ declare export function of<T>(
 
 // eslint-disable-next-line no-redeclare
 export function of(validate) {
-  const maybe = curry2(
-    (valueName, value) => (value == null ? value : validate(valueName, value)),
+  const maybe = curry2((valueName, value) =>
+    value == null ? value : validate(valueName, value),
   );
 
-  const optional = curry2(
-    (valueName, value) =>
-      value === undefined ? value : validate(valueName, value),
+  const optional = curry2((valueName, value) =>
+    value === undefined ? value : validate(valueName, value),
   );
 
   const contract = (...args) => {
