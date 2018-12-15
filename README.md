@@ -1,5 +1,7 @@
 # typed-contracts [![Build Status][status-img]][status-url]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bigslycat/typed-contracts.svg)](https://greenkeeper.io/)
+
 Validation with good type inference
 
 ## What is it
