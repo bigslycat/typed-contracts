@@ -22,7 +22,7 @@ export class UnionError extends ValidationError {
   }
 }
 
-export const union: UnionContract = /* :: <T, L: string | number | boolean> */ (
+export const union: UnionContract = <T, L: string | number | boolean>(
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
