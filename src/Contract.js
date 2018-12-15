@@ -36,7 +36,7 @@ function curry2(fn) {
     args.length > 1 ? fn(args[0], args[1]) : value => fn(args[0], value);
 }
 
-declare export function of<T>(
+declare export function of/* :: <T> */ (
   validate: (valueName: string, value: mixed) => ValidationError | T,
 ): Contract<T>;
 
