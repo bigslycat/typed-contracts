@@ -7,7 +7,7 @@ import { ObjectValidationError } from './ObjectValidationError';
 
 type ExtractReturnType = <T>(
   (valueName: string, value: mixed) => ValidationError | T,
-) => $Supertype<T>;
+) => T;
 
 export class MustBeExactError extends ValidationError {
   constructor(objectValueName: string, keyValueName: string, value: mixed) {
@@ -18,12 +18,10 @@ export class MustBeExactError extends ValidationError {
   }
 }
 
-export const object = <
+export function object<
   S: { [prop: string]: (valueName: string, value: mixed) => any },
->(
-  spec: S,
-): contract.Contract<$ObjMap<S, ExtractReturnType>> =>
-  contract.of((valueName, value) => {
+>(spec: S): contract.Contract<$ReadOnly<$ObjMap<S, ExtractReturnType>>> {
+  return contract.of((valueName, value) => {
     if (!value || typeof value != 'object' || Array.isArray(value)) {
       return new ValidationError(valueName, value, 'Object');
     }
@@ -43,6 +41,7 @@ export const object = <
       ? new ObjectValidationError(valueName, value, errors)
       : value;
   });
+}
 
 export const isObject = object;
 export const passObject = object;

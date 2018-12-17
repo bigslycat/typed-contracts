@@ -7,17 +7,17 @@ import { union } from '../union';
 
 import { ObjectValidationError } from './ObjectValidationError';
 
-type ObjectOf = <T, L: string | number | boolean>(
+declare function objectOf<T, L: string | number | boolean>(
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
-) => contract.Contract<{ [string]: T | L }>;
+): contract.Contract<{ +[string]: T | L }>;
 
-export const objectOf: ObjectOf = <T, L: string | number | boolean>(
+export function objectOf<T, L: string | number | boolean>(
   ...rules: $ReadOnlyArray<
     ((name: string, value: mixed) => ValidationError | T) | L,
   >
-): contract.Contract<{ [string]: T | L }> => {
+): contract.Contract<{ +[string]: T | L }> {
   const validate = union(...rules);
 
   return contract.of(
@@ -37,7 +37,7 @@ export const objectOf: ObjectOf = <T, L: string | number | boolean>(
         : value;
     },
   );
-};
+}
 
 export const isObjectOf = objectOf;
 export const passObjectOf = objectOf;
