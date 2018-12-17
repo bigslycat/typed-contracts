@@ -2,7 +2,7 @@
 
 import { ValidationError } from './ValidationError';
 
-export type Contract<T> = {
+export type Contract<+T> = {
   (
     valueName: string,
     ...$ReadOnlyArray<void>
