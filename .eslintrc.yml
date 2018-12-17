@@ -34,6 +34,7 @@ rules:
   no-dupe-keys: error
   no-return-assign: off
   consistent-return: off
+  no-redeclare: off
 
   import/prefer-default-export: off
   import/no-extraneous-dependencies: off
