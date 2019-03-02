@@ -123,3 +123,15 @@ export declare var isUndef: typeof undef;
 export declare var passUndef: typeof undef;
 export declare var isVoid: typeof undef;
 export declare var passVoid: typeof undef;
+
+export declare function objectOf<T, L extends string | number | boolean>(
+  ...rules: Array<
+    ((name: string, value: unknown) => ValidationError | T) | L
+  >
+): Contract<{ readonly [key: string]: T | L }>;
+
+export declare var isObjectOf: typeof objectOf;
+export declare var passObjectOf: typeof objectOf;
+export declare var objOf: typeof objectOf;
+export declare var isObjOf: typeof objectOf;
+export declare var passObjOf: typeof objectOf;
