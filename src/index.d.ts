@@ -136,10 +136,6 @@ export declare var objOf: typeof objectOf;
 export declare var isObjOf: typeof objectOf;
 export declare var passObjOf: typeof objectOf;
 
-type ExtractReturnTypeObject = <T>(
-  fn: (valueName: string, value: unknown) => ValidationError | T
-) => T;
-
 export declare function object<
   S extends {
     [prop: string]: (valueName: string, value: unknown) => any,
@@ -147,3 +143,9 @@ export declare function object<
 >(spec: S): Contract<{
   readonly [K in keyof S]: Exclude<ReturnType<S[K]>, ValidationError>
 }>;
+
+export declare var isObject: typeof object;
+export declare var passObject: typeof object;
+export declare var obj: typeof object;
+export declare var isObj: typeof object;
+export declare var passObj: typeof object;
