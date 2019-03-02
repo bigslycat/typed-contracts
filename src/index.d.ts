@@ -96,3 +96,15 @@ export declare var str: typeof string;
 export declare var isStr: typeof string;
 export declare var passStr: typeof string;
 
+export declare function union<T, L extends string | number | boolean>(
+  ...rules: Array<
+    ((name: string, value: unknown) => ValidationError | T) | L
+  >
+): Contract<T | L>;
+
+export declare var isUnion: typeof union;
+export declare var passUnion: typeof union;
+export declare var uni: typeof union;
+export declare var isUni: typeof union;
+export declare var passUni: typeof union;
+
