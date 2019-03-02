@@ -51,3 +51,13 @@ export declare function of<T>(
   validate: (valueName: string, value: unknown) => ValidationError | T,
 ): Contract<T>;
 
+export declare function array<T>(
+  ...rules: Array<(name: string, value: unknown) => ValidationError | T>
+): Contract<ReadonlyArray<T>>;
+
+export declare var isArray: typeof array;
+export declare var passArray: typeof array;
+export declare var arr: typeof array;
+export declare var isArr: typeof array;
+export declare var passArr: typeof array;
+
