@@ -12,6 +12,14 @@ export declare class ValidationError {
   );
 }
 
+export declare class ObjectValidationError extends ValidationError {
+  constructor(
+    valueName: string,
+    value: unknown,
+    errors: ReadonlyArray<ValidationError>,
+  );
+}
+
 export declare class ArrayValidationError extends ValidationError {
   constructor(
     valueName: string,
