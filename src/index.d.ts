@@ -82,3 +82,10 @@ export declare var nul: Contract<null>;
 export declare var isNull: typeof nul;
 export declare var passNull: typeof nul;
 
+export declare var number: Contract<number>;
+export declare var isNumber: typeof number;
+export declare var passNumber: typeof number;
+export declare var num: typeof number;
+export declare var isNum: typeof number;
+export declare var passNum: typeof number;
+
