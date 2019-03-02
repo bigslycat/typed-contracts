@@ -1,15 +1,20 @@
 language: node_js
 node_js:
-- '8'
-before_script:
-- yarn install
-script: yarn precommit && yarn run build
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: me@stupidcat.wtf
-  on:
-    tags: true
-  branch: master
-  api_key:
-    secure: UZkvJh+omAOKv2Xq5zH9d+NTbo8USeVfznI/Eg3n89IW7qW8H4X35jb9veowusl4ybrsFuyI4q9BDpUeFUHztehbwjVvrJTdDRuDA4HR+IO6bZj0j6+5a/hN3ORMHISrIb30sTxA8OG3kr4Rc+JuRwfMZpQ1uazjnsaNv9WDAeJUnH9QYfi4p6e+0ix6an22iK2ujmZmbBrHFTTkyucGvUJkFKTYiO9KFI4ciUk8SqDEwp+09vJwg3RP2DSOTY8tOL9jsmkK/kw32uhS1Hs3XcFLZA2bJ4QSJUZUqtXLzG2HVMJphRC/Uraqa7yTm37jMkU6Jc4uiQ9nTdToUKsJoAP/i94qXpybAIZrn+qLlMMEPT9DXjySaaMQjhav+OPN9eVxjJM1dxXaiAoqsXZNcqV78yIyHaBjMT7OysddpePOhfONQCTrOYAMuhM/xpAtnbFiRm2PTI7NZWxIJq6kj3WfPyVsMV+HDBWLmo5WbRx5rWLop4wGrLmbM+flgsSuQH4v2MjEwkMhESxE/l/rhvuxqEUcJ5wtwkOi+tsQpYGYy08XhUu/kf7dbfYZUO40T35T8jg2B8F4ISkw70iDujY5/tK28g0BGvjM3xg94pe8KX8PKHfyylAde35CrDhB1AgC3KZ1KqUxcS8CjcOCQKxfTPyM76lyZBTyuP0CtF4=
+  - '8'
+  - '10'
+  - 'node'
+
+jobs:
+  include:
+    - stage: Lint
+      script: yarn lint
+    - stage: Flow check
+      script: yarn flow
+    - stage: Test
+      script: yarn test
+    - stage: Release
+      if: branch = master
+      node_js: node
+      script:
+        - yarn build
+        - npx semantic-release
