@@ -61,3 +61,10 @@ export declare var arr: typeof array;
 export declare var isArr: typeof array;
 export declare var passArr: typeof array;
 
+export declare var boolean: Contract<boolean>;
+export declare var isBoolean: typeof boolean;
+export declare var passBoolean: typeof boolean;
+export declare var bool: typeof boolean;
+export declare var isBool: typeof boolean;
+export declare var passBool: typeof boolean;
+
