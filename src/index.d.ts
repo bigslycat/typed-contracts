@@ -19,3 +19,12 @@ export declare class ArrayValidationError extends ValidationError {
     errors: ReadonlyArray<ValidationError>,
   );
 }
+
+export declare class UnionError extends ValidationError {
+  constructor(
+    valueName: string,
+    value: unknown,
+    errors: ReadonlyArray<ValidationError>,
+  );
+}
+
