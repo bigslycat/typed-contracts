@@ -108,3 +108,10 @@ export declare var uni: typeof union;
 export declare var isUni: typeof union;
 export declare var passUni: typeof union;
 
+export declare var undef: Contract<void>;
+export declare var isUndefined: typeof undef;
+export declare var passUndefined: typeof undef;
+export declare var isUndef: typeof undef;
+export declare var passUndef: typeof undef;
+export declare var isVoid: typeof undef;
+export declare var passVoid: typeof undef;
