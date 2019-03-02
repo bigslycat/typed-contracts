@@ -78,3 +78,7 @@ export declare var lit: typeof literal;
 export declare var isLit: typeof literal;
 export declare var passLit: typeof literal;
 
+export declare var nul: Contract<null>;
+export declare var isNull: typeof nul;
+export declare var passNull: typeof nul;
+
