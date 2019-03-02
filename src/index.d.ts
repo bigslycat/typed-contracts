@@ -149,3 +149,11 @@ export declare var passObject: typeof object;
 export declare var obj: typeof object;
 export declare var isObj: typeof object;
 export declare var passObj: typeof object;
+
+export declare function shape<
+  S extends {
+    [prop: string]: (valueName: string, value: unknown) => any,
+  },
+>(spec: S): Contract<{
+  readonly [K in keyof S]: void | Exclude<ReturnType<S[K]>, ValidationError>
+}>;
