@@ -11,3 +11,11 @@ export declare class ValidationError {
     nested?: ReadonlyArray<ValidationError>,
   );
 }
+
+export declare class ArrayValidationError extends ValidationError {
+  constructor(
+    valueName: string,
+    value: unknown,
+    errors: ReadonlyArray<ValidationError>,
+  );
+}
