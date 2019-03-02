@@ -89,3 +89,10 @@ export declare var num: typeof number;
 export declare var isNum: typeof number;
 export declare var passNum: typeof number;
 
+export declare var string: Contract<string>;
+export declare var isString: typeof string;
+export declare var passString: typeof string;
+export declare var str: typeof string;
+export declare var isStr: typeof string;
+export declare var passStr: typeof string;
+
