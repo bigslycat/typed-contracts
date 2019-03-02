@@ -68,3 +68,13 @@ export declare var bool: typeof boolean;
 export declare var isBool: typeof boolean;
 export declare var passBool: typeof boolean;
 
+export declare function literal<T extends string | number | boolean>(
+  expectedValue: T,
+): Contract<T>;
+
+export declare var isLiteral: typeof literal;
+export declare var passLiteral: typeof literal;
+export declare var lit: typeof literal;
+export declare var isLit: typeof literal;
+export declare var passLit: typeof literal;
+
