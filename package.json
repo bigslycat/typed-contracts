@@ -10,6 +10,7 @@
     "esm",
     "src"
   ],
+  "types": "src/index.d.ts",
   "scripts": {
     "lint": "yarn lint:md && yarn lint:js",
     "lint:js": "eslint .",
