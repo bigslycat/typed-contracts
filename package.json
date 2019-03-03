@@ -16,12 +16,12 @@
     "lint:md": "node scripts/mdlint",
     "flow": "flow",
     "test": "jest --env=node",
-    "build": "rollup -c",
-    "preversion": "git checkout master && yarn lint && yarn flow && yarn test",
-    "postversion": "git push --follow-tags"
+    "build": "rollup -c"
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-commit": "yarn lint && yarn flow && yarn test"
+    }
   },
   "dependencies": {
     "core-js": "^2.6.5"
