@@ -1,7 +1,7 @@
 {
   "name": "typed-contracts",
   "version": "2.1.0",
-  "description": "Validation with good type inference (Flow support)",
+  "description": "Validation with good Flow and TypeScript type inference",
   "main": "lib/bundle.js",
   "files": [
     "README.md",
@@ -64,8 +64,10 @@
   },
   "repository": "bigslycat/typed-contracts",
   "keywords": [
-    "flow",
-    "flowtype",
+    "TypeScript",
+    "TS",
+    "Flow",
+    "Flowtype",
     "contracts",
     "validation",
     "type inference"
