@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/bigslycat/typed-contracts/compare/v2.1.0...v2.1.1) (2019-03-03)
+
+
+### Bug Fixes
+
+* **package:** update meta ([bbd5f22](https://github.com/bigslycat/typed-contracts/commit/bbd5f22))
+
 # [2.1.0](https://github.com/bigslycat/typed-contracts/compare/v2.0.2...v2.1.0) (2019-03-03)
 
 
