@@ -61,10 +61,7 @@
     "shx": "^0.3.2",
     "typescript": "^3.3.3333"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bigslycat/typed-contracts.git"
-  },
+  "repository": "bigslycat/typed-contracts",
   "keywords": [
     "flow",
     "flowtype",
