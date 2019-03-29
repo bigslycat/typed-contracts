@@ -1,3 +1,11 @@
+## [2.1.2](https://github.com/bigslycat/typed-contracts/compare/v2.1.1...v2.1.2) (2019-03-29)
+
+
+### Bug Fixes
+
+* **build:** fix babel config for esm build ([50c1f58](https://github.com/bigslycat/typed-contracts/commit/50c1f58))
+* **ValidationError:** fix flow error ([e17ac7c](https://github.com/bigslycat/typed-contracts/commit/e17ac7c))
+
 ## [2.1.1](https://github.com/bigslycat/typed-contracts/compare/v2.1.0...v2.1.1) (2019-03-03)
 
 
