@@ -11,7 +11,7 @@ jobs:
     - stage: Flow check
       script: yarn flow
     - stage: Test
-      script: yarn test
+      script: yarn test:ci
     - stage: Release
       if: branch = master
       node_js: node

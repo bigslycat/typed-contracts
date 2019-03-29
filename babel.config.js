@@ -8,6 +8,7 @@ const env = modules => [
       browsers: ['last 4 version', '> 1%', 'not dead'],
     },
     useBuiltIns: 'usage',
+    corejs: { version: 3, proposals: true },
     modules: !!modules && 'commonjs',
   },
 ];
