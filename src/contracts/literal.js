@@ -6,10 +6,13 @@ import * as contract from '../Contract';
 export const literal = <T: string | number | boolean>(
   expectedValue: T,
 ): contract.Contract<T> =>
-  contract.of((valueName, value) => {
-    if (value === expectedValue) return (value: any);
-    return new ValidationError(valueName, value, JSON.stringify(expectedValue));
-  });
+  contract.of(
+    (valueName, value): any =>
+      value === expectedValue ||
+      (Number.isNaN(value) && Number.isNaN(expectedValue))
+        ? value
+        : new ValidationError(valueName, value, JSON.stringify(expectedValue)),
+  );
 
 export const isLiteral = literal;
 export const passLiteral = literal;
