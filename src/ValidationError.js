@@ -16,7 +16,7 @@ const valueToString = (value: mixed): string => {
     case null:
       return 'null';
     default:
-      return `${JSON.stringify(value)} (${typeof value})`;
+      return `${(JSON.stringify(value): any)} (${typeof value})`;
   }
 };
 
