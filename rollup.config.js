@@ -47,7 +47,18 @@ export default [
         targets: ['esm'],
       }),
       flowEntry(),
-      babel({ presets: [['@babel/env', { targets: { node: 10 } }]] }),
+      babel({
+        presets: [
+          [
+            '@babel/env',
+            {
+              targets: { node: 10 },
+              useBuiltIns: 'usage',
+              modules: false,
+            },
+          ],
+        ],
+      }),
       commonjs(),
     ],
     external: id => !!reg && reg.test(id),
