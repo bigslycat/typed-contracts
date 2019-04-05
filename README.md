@@ -5,11 +5,11 @@
 
 Validation with good Flow and TypeScript type inference
 
-## What is it
+## What it is
 
 `Contract` is a function that receives an arbitrary value and validates it.
-`Сontract` returns this value if it passed the validation, or `ValidationError` instance if not.
-Contracts are a 100% guarantee that the data that passed validation matches your expeted type definitions.
+`Сontract` returns the value if it passed the validation, or an instance of `ValidationError` otherwise.
+Contracts are a 100% guarantee that the data that passed validation matches your expected type definitions.
 
 ## Install
 
@@ -17,7 +17,7 @@ npm: `npm install --save typed-contracts`
 
 yarn: `yarn add typed-contracts`
 
-## How it work
+## How it works
 
 All contracts have this interface:
 
@@ -99,7 +99,7 @@ const user = userValidate({ name: 'Vasya' })
 
 Aliases: `isArray`, `passArray`, `arr`, `isArr`, `passArr`.
 
-Creates a contract that expects an array of values that are validated by the initial contract.
+Creates a contract which expects an array of values that are validated by the initial contract.
 
 ```js
 (...contracts: Array<
@@ -111,7 +111,7 @@ Creates a contract that expects an array of values that are validated by the ini
 
 Aliases: `isLiteral`, `passLiteral`, `lit`, `isLit`, `passLit`.
 
-Creates a contract that expects a specific string, number or boolean value.
+Creates a contract which expects a specific string, number or boolean value.
 
 ```js
 (expected: string | number | boolean) => Contract
@@ -121,26 +121,26 @@ Creates a contract that expects a specific string, number or boolean value.
 
 Aliases: `isNull`, `passNull`.
 
-Creates a contract that expects null.
+Creates a contract which expects null.
 
 ### `number`
 
 Aliases: `isNumber`, `passNumber`, `num`, `isNum`, `passNum`.
 
-Creates a contract that expects number.
+Creates a contract which expects a number.
 
 ### `boolean`
 
 Aliases: `isBoolean`, `passBoolean`, `bool`, `isBool`, `passBool`.
 
-Creates a contract that expects boolean.
+Creates a contract which expects a boolean.
 
 ### `object`
 
 Aliases: `isObject`, `passObject`, `obj`, `isObj`, `passObj`.
 
-Creates a contract that expects an object whose properties are validated by the corresponding
-contracts in spec.
+Creates a contract which expects an object whose properties are validated by the corresponding
+contracts in the spec.
 
 ```js
 (spec: { [key: string] (valueName: string, value: mixed) => (ValidationError | T) }) => Contract
@@ -156,8 +156,8 @@ contracts in spec.
 
 Aliases: `isObjectOf`, `passObjectOf`, `objOf`, `isObjOf`, `passObjOf`.
 
-Creates a contract that expects an object whose properties are validated by the corresponding
-contracts in spec.
+Creates a contract which expects an object whose properties are validated by the corresponding
+contracts in the spec.
 
 ```js
 (...contracts: Array<
@@ -172,13 +172,13 @@ contracts in spec.
 
 Aliases: `isString`, `passString`, `str`, `isStr`, `passStr`.
 
-Creates a contract that expects string.
+Creates a contract which expects a string.
 
 ### `union`
 
 Aliases: `isUnion`, `passUnion`, `uni`, `isUni`, `passUni`.
 
-Creates a contract that expects value, validating one of the initial contracts.
+Creates a contract which expects a value, validating one of the initial contracts.
 
 ```js
 (...contracts: Array<
@@ -193,7 +193,7 @@ Creates a contract that expects value, validating one of the initial contracts.
 
 Aliases: `isUndefined`, `passUndefined`, `isUndef`, `passUndef`, `isVoid`, `passVoid`.
 
-Creates a contract that expects undefined.
+Creates a contract which expects `undefined`.
 
 [status-url]: https://travis-ci.org/bigslycat/typed-contracts
 [status-img]: https://travis-ci.org/bigslycat/typed-contracts.svg?branch=master
