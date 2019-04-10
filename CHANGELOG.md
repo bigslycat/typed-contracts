@@ -1,3 +1,11 @@
+# [2.2.0](https://github.com/bigslycat/typed-contracts/compare/v2.1.2...v2.2.0) (2019-04-10)
+
+
+### Features
+
+* **Contract:** add mapResult method ([ebf95ed](https://github.com/bigslycat/typed-contracts/commit/ebf95ed))
+* **Contract:** add match method ([e24ebc5](https://github.com/bigslycat/typed-contracts/commit/e24ebc5))
+
 ## [2.1.2](https://github.com/bigslycat/typed-contracts/compare/v2.1.1...v2.1.2) (2019-03-29)
 
 
