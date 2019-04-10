@@ -195,5 +195,19 @@ Aliases: `isUndefined`, `passUndefined`, `isUndef`, `passUndef`, `isVoid`, `pass
 
 Creates a contract which expects `undefined`.
 
+## Using with ADT
+
+```js
+import * as t from 'typed-contracts';
+import { type Either, Right, Left } from 'igogo';
+
+const transform = <T>(
+  result: t.ValidationError | T,
+): Either<t.ValidationError, T> =>
+  result instanceof t.ValidationError ? Left(result) : Right(result);
+
+const string = t.string.mapResult(transform);
+```
+
 [status-url]: https://travis-ci.org/bigslycat/typed-contracts
 [status-img]: https://travis-ci.org/bigslycat/typed-contracts.svg?branch=master

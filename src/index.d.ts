@@ -53,6 +53,11 @@ export type Contract<T> = {
     valueName: string
   ): (value: unknown) => ValidationError | void | null | T,
   maybe(valueName: string, value: unknown): ValidationError | void | null | T,
+
+  mapResult<M>(
+    transform: (result: ValidationError | T) => M,
+  ): ((valueName: string) => (value: unknown) => M) &
+    ((valueName: string, value: unknown) => M),
 };
 
 export declare function of<T>(
