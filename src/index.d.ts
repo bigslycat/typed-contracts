@@ -58,6 +58,12 @@ export type Contract<T> = {
     transform: (result: ValidationError | T) => M,
   ): ((valueName: string) => (value: unknown) => M) &
     ((valueName: string, value: unknown) => M),
+
+  match<M>(
+    fromValue: (value: T) => M,
+    fromError: (error: ValidationError) => M,
+  ): ((valueName: string) => (value: unknown) => M) &
+    ((valueName: string, value: unknown) => M),
 };
 
 export declare function of<T>(

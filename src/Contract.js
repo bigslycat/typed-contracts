@@ -29,6 +29,12 @@ export type Contract<+T> = {
     transform: (result: ValidationError | T) => M,
   ): ((valueName: string, ...$ReadOnlyArray<void>) => (value: mixed) => M) &
     ((valueName: string, value: mixed) => M),
+
+  match<M>(
+    fromValue: (value: T) => M,
+    fromError: (error: ValidationError) => M,
+  ): ((valueName: string, ...$ReadOnlyArray<void>) => (value: mixed) => M) &
+    ((valueName: string, value: mixed) => M),
 };
 
 declare function curry2<A, B, C>(
@@ -69,9 +75,18 @@ export function of(validate) {
   const mapResult = transform =>
     curry2((valueName, value) => transform(validate(valueName, value)));
 
+  const match = (fromValue, fromError) =>
+    curry2((valueName, value) => {
+      const result = validate(valueName, value);
+      return result instanceof ValidationError
+        ? fromError(result)
+        : fromValue(result);
+    });
+
   contract.maybe = maybe;
   contract.optional = optional;
   contract.mapResult = mapResult;
+  contract.match = match;
 
   return contract;
 }

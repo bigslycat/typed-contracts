@@ -207,6 +207,8 @@ const transform = <T>(
   result instanceof t.ValidationError ? Left(result) : Right(result);
 
 const string = t.string.mapResult(transform);
+
+const number = t.number.match<Either<*, *>>(Right, Left);
 ```
 
 [status-url]: https://travis-ci.org/bigslycat/typed-contracts
