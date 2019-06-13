@@ -21,23 +21,21 @@ export const array = <T>(
 ): contract.Contract<$ReadOnlyArray<T>> => {
   const validate = rules.length === 1 ? rules[0] : union(...rules);
 
-  return contract.of(
-    (valueName, value): any => {
-      if (!Array.isArray(value)) {
-        return new ValidationError(valueName, value, 'Array');
-      }
+  return contract.of((valueName, value): any => {
+    if (!Array.isArray(value)) {
+      return new ValidationError(valueName, value, 'Array');
+    }
 
-      const errors = value.reduce((acc, item, index) => {
-        const result = validate(`${valueName}[${index}]`, item);
-        if (result instanceof ValidationError) acc.push(result);
-        return acc;
-      }, []);
+    const errors = value.reduce((acc, item, index) => {
+      const result = validate(`${valueName}[${index}]`, item);
+      if (result instanceof ValidationError) acc.push(result);
+      return acc;
+    }, []);
 
-      return errors.length
-        ? new ArrayValidationError(valueName, value, errors)
-        : value;
-    },
-  );
+    return errors.length
+      ? new ArrayValidationError(valueName, value, errors)
+      : value;
+  });
 };
 
 export const isArray = array;
