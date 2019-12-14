@@ -52,7 +52,7 @@
     "flow-typed": "^2.6.2",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
-    "markdownlint": "^0.17.2",
+    "markdownlint": "^0.18.0",
     "prettier": "^1.18.2",
     "rollup": "^1.26.2",
     "rollup-plugin-babel": "^4.3.3",
