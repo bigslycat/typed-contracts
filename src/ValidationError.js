@@ -48,9 +48,7 @@ export class ValidationError extends TypeError {
 
     if (this.expectedTypes.length) {
       this.message = this.nested.length
-        ? `${this.expectedTypes[0]} ${this.valueName} have ${
-            this.nested.length
-          } nested validation errors`
+        ? `${this.expectedTypes[0]} ${this.valueName} have ${this.nested.length} nested validation errors`
         : `\`${this.valueName}\` must be ${typesToString(
             this.expectedTypes,
           )}, but ${valueToString(value)} given`;

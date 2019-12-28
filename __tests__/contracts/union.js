@@ -15,10 +15,11 @@ describe('isUnion', () => {
       const validate2 = jest.fn(createError('type2'));
       const validate3 = jest.fn(createError('type3'));
 
-      const result = isUnion(validate1, validate2, validate3)(
-        'valueName',
-        'value',
-      );
+      const result = isUnion(
+        validate1,
+        validate2,
+        validate3,
+      )('valueName', 'value');
 
       expect(result).toBeInstanceOf(ValidationError);
       expect(result.expectedTypes).toEqual(['Union']);
