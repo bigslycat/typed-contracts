@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/bigslycat/typed-contracts/compare/v2.2.1...v2.2.2) (2019-12-28)
+
+
+### Bug Fixes
+
+* **package:** fix potential security vulnerabilities ([dcf269b](https://github.com/bigslycat/typed-contracts/commit/dcf269b162d6dc7b9642926c4b6ecd294f0c58bb))
+
 ## [2.2.1](https://github.com/bigslycat/typed-contracts/compare/v2.2.0...v2.2.1) (2019-06-13)
 
 
