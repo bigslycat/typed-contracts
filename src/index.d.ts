@@ -36,6 +36,8 @@ export declare class UnionError extends ValidationError {
   );
 }
 
+type Custom<T> = (name: string, value: unknown) => ValidationError | T
+
 export type Contract<T> = {
   (valueName: string): {
     (value: unknown): ValidationError | T,
@@ -115,11 +117,9 @@ export declare var str: typeof string;
 export declare var isStr: typeof string;
 export declare var passStr: typeof string;
 
-export declare function union<T, L extends string | number | boolean>(
-  ...rules: Array<
-    ((name: string, value: unknown) => ValidationError | T) | L
-  >
-): Contract<T | L>;
+export declare function union<A extends Array<Custom<any> | string | number | boolean>>(
+  ...rules: A
+): Contract<A[number]>;
 
 export declare var isUnion: typeof union;
 export declare var passUnion: typeof union;
