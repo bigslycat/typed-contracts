@@ -69,7 +69,7 @@ export declare function of<T>(validate: Validator<T>): Contract<T>;
 
 export declare function array<T extends Array<Validator<any>>>(
   ...rules: T
-): Contract<ReadonlyArray<T[number] extends Validator<any> ? Get<T[number]> : T[number]>>;
+): Contract<ReadonlyArray<Get<T[number]>>>;
 
 export declare var isArray: typeof array;
 export declare var passArray: typeof array;
@@ -114,7 +114,9 @@ export declare var passStr: typeof string;
 
 export declare function union<T extends Array<Validator<any> | string | number | boolean>>(
   ...rules: T
-): Contract<T[number] extends Validator<any> ? Get<T[number]> : T[number]>;
+): Contract<
+  Exclude<T[number], Validator<any>> | (Extract<T[number], Validator<any>> extends Validator<any> ? Get<T[number]> : T[number])
+>;
 
 export declare var isUnion: typeof union;
 export declare var passUnion: typeof union;
@@ -132,7 +134,10 @@ export declare var passVoid: typeof undef;
 
 export declare function objectOf<T extends Array<Validator<any> | string | number | boolean>>(
   ...rules: T
-): Contract<{ readonly [key: string]: T[number] extends Validator<any> ? Get<T[number]> : T[number] }>;
+): Contract<{
+  readonly [key: string]:
+    Exclude<T[number], Validator<any>> | (Extract<T[number], Validator<any>> extends Validator<any> ? Get<T[number]> : T[number])
+}>;
 
 export declare var isObjectOf: typeof objectOf;
 export declare var passObjectOf: typeof objectOf;
