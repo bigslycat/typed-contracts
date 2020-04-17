@@ -67,7 +67,7 @@ export type Contract<T> = {
 
 export declare function of<T>(validate: Validator<T>): Contract<T>;
 
-export declare function array<T extends Array<Validator<any> | string | number | boolean>>(
+export declare function array<T extends Array<Validator<any>>>(
   ...rules: T
 ): Contract<ReadonlyArray<T[number] extends Validator<any> ? Get<T[number]> : T[number]>>;
 
