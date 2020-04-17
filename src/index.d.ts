@@ -47,14 +47,10 @@ export type Contract<T> = {
   },
   (valueName: string, value: unknown): ValidationError | T,
 
-  optional(
-    valueName: string
-  ): Validator<T | void>,
+  optional(valueName: string): Validator<T | void>,
   optional(valueName: string, value: unknown): ValidationError | void | T,
 
-  maybe(
-    valueName: string
-  ): (value: unknown) => ValidationError | void | null | T,
+  maybe(valueName: string): Validator<T | void | null>,
   maybe(valueName: string, value: unknown): ValidationError | void | null | T,
 
   mapResult<M>(
@@ -69,9 +65,7 @@ export type Contract<T> = {
     ((valueName: string, value: unknown) => M),
 };
 
-export declare function of<T>(
-  validate: (valueName: string, value: unknown) => ValidationError | T,
-): Contract<T>;
+export declare function of<T>(validate: Validator<T>): Contract<T>;
 
 export declare function array<T extends Array<Validator<any> | string | number | boolean>>(
   ...rules: T
