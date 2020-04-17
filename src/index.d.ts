@@ -37,7 +37,7 @@ export declare class UnionError extends ValidationError {
 }
 
 type Validator<T> = (name: string, value: unknown) => ValidationError | T
-type Get<T extends Validator<any>> = T extends Validator<infer R> ? R : never;
+export type Get<T extends Validator<any>> = T extends Validator<infer R> ? R : never;
 
 export type Contract<T> = {
   (valueName: string): {
