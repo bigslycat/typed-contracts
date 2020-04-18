@@ -115,8 +115,11 @@ export declare var passStr: typeof string;
 export declare function union<T extends Array<Validator<any> | string | number | boolean>>(
   ...rules: T
 ): Contract<
-  Exclude<T[number], Validator<any>> | (Extract<T[number], Validator<any>> extends Validator<any> ? Get<T[number]> : T[number])
->;
+    | Exclude<T[number], Validator<any>>
+    | (Extract<T[number], Validator<any>> extends Validator<any>
+        ? Get<Extract<T[number], Validator<any>>>
+        : T[number])
+  >;
 
 export declare var isUnion: typeof union;
 export declare var passUnion: typeof union;
@@ -135,8 +138,11 @@ export declare var passVoid: typeof undef;
 export declare function objectOf<T extends Array<Validator<any> | string | number | boolean>>(
   ...rules: T
 ): Contract<{
-  readonly [key: string]:
-    Exclude<T[number], Validator<any>> | (Extract<T[number], Validator<any>> extends Validator<any> ? Get<T[number]> : T[number])
+    readonly [key: string]:
+      | Exclude<T[number], Validator<any>>
+      | (Extract<T[number], Validator<any>> extends Validator<any>
+          ? Get<Extract<T[number], Validator<any>>>
+          : T[number]);
 }>;
 
 export declare var isObjectOf: typeof objectOf;
