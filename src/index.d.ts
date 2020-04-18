@@ -36,6 +36,9 @@ export declare class UnionError extends ValidationError {
   );
 }
 
+type Validator<T> = (name: string, value: unknown) => ValidationError | T
+export type Get<T extends Validator<any>> = T extends Validator<infer R> ? R : never;
+
 export type Contract<T> = {
   (valueName: string): {
     (value: unknown): ValidationError | T,
@@ -44,14 +47,10 @@ export type Contract<T> = {
   },
   (valueName: string, value: unknown): ValidationError | T,
 
-  optional(
-    valueName: string
-  ): (value: unknown) => ValidationError | void | T,
+  optional(valueName: string): Validator<T | void>,
   optional(valueName: string, value: unknown): ValidationError | void | T,
 
-  maybe(
-    valueName: string
-  ): (value: unknown) => ValidationError | void | null | T,
+  maybe(valueName: string): Validator<T | void | null>,
   maybe(valueName: string, value: unknown): ValidationError | void | null | T,
 
   mapResult<M>(
@@ -66,13 +65,11 @@ export type Contract<T> = {
     ((valueName: string, value: unknown) => M),
 };
 
-export declare function of<T>(
-  validate: (valueName: string, value: unknown) => ValidationError | T,
-): Contract<T>;
+export declare function of<T>(validate: Validator<T>): Contract<T>;
 
-export declare function array<T>(
-  ...rules: Array<(name: string, value: unknown) => ValidationError | T>
-): Contract<ReadonlyArray<T>>;
+export declare function array<T extends Array<Validator<any>>>(
+  ...rules: T
+): Contract<ReadonlyArray<Get<T[number]>>>;
 
 export declare var isArray: typeof array;
 export declare var passArray: typeof array;
@@ -115,11 +112,14 @@ export declare var str: typeof string;
 export declare var isStr: typeof string;
 export declare var passStr: typeof string;
 
-export declare function union<T, L extends string | number | boolean>(
-  ...rules: Array<
-    ((name: string, value: unknown) => ValidationError | T) | L
-  >
-): Contract<T | L>;
+export declare function union<T extends Array<Validator<any> | string | number | boolean>>(
+  ...rules: T
+): Contract<
+    | Exclude<T[number], Validator<any>>
+    | (Extract<T[number], Validator<any>> extends Validator<any>
+        ? Get<Extract<T[number], Validator<any>>>
+        : T[number])
+  >;
 
 export declare var isUnion: typeof union;
 export declare var passUnion: typeof union;
@@ -135,11 +135,15 @@ export declare var passUndef: typeof undef;
 export declare var isVoid: typeof undef;
 export declare var passVoid: typeof undef;
 
-export declare function objectOf<T, L extends string | number | boolean>(
-  ...rules: Array<
-    ((name: string, value: unknown) => ValidationError | T) | L
-  >
-): Contract<{ readonly [key: string]: T | L }>;
+export declare function objectOf<T extends Array<Validator<any> | string | number | boolean>>(
+  ...rules: T
+): Contract<{
+    readonly [key: string]:
+      | Exclude<T[number], Validator<any>>
+      | (Extract<T[number], Validator<any>> extends Validator<any>
+          ? Get<Extract<T[number], Validator<any>>>
+          : T[number]);
+}>;
 
 export declare var isObjectOf: typeof objectOf;
 export declare var passObjectOf: typeof objectOf;
