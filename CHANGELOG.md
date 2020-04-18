@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/bigslycat/typed-contracts/compare/v2.2.2...v2.3.0) (2020-04-18)
+
+
+### Features
+
+* **types:** merge pull request [#87](https://github.com/bigslycat/typed-contracts/issues/87) from sergeysova/patch-2 ([1bd16ab](https://github.com/bigslycat/typed-contracts/commit/1bd16ab26127a8afd0556a24b8a4c74d377bfea3))
+
 ## [2.2.2](https://github.com/bigslycat/typed-contracts/compare/v2.2.1...v2.2.2) (2019-12-28)
 
 
