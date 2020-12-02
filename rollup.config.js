@@ -1,5 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import flowEntry from 'rollup-plugin-flow-entry';
 import clear from 'rollup-plugin-clear';
 
