@@ -112,6 +112,66 @@ export declare var str: typeof string;
 export declare var isStr: typeof string;
 export declare var passStr: typeof string;
 
+export declare function intersection<A>(
+  a: Validator<A>,
+): Contract<A>;
+
+ export declare function intersection<A, B>(
+  a: Validator<A>,
+  b: Validator<B>,
+): Contract<A & B>;
+
+ export declare function intersection<A, B, C>(
+  a: Validator<A>,
+  b: Validator<B>,
+  c: Validator<C>,
+): Contract<A & B & C>;
+
+ export declare function intersection<A, B, C, D>(
+  a: Validator<A>,
+  b: Validator<B>,
+  c: Validator<C>,
+  d: Validator<D>,
+): Contract<A & B & C & D>;
+
+ export declare function intersection<A, B, C, D, E>(
+  a: Validator<A>,
+  b: Validator<B>,
+  c: Validator<C>,
+  d: Validator<D>,
+  e: Validator<E>,
+): Contract<A & B & C & D & E>;
+
+export declare function intersection<A, B, C, D, E, F>(
+  a: Validator<A>,
+  b: Validator<B>,
+  c: Validator<C>,
+  d: Validator<D>,
+  e: Validator<E>,
+  f: Validator<F>,
+): Contract<A & B & C & D & E & F>;
+
+ export declare function intersection<A, B, C, D, E, F, G>(
+  a: Validator<A>,
+  b: Validator<B>,
+  c: Validator<C>,
+  d: Validator<D>,
+  e: Validator<E>,
+  f: Validator<F>,
+  g: Validator<G>,
+): Contract<A & B & C & D & E & F & G>;
+
+ export declare function intersection<A, B, C, D, E, F, G, H>(
+  a: Validator<A>,
+  b: Validator<B>,
+  c: Validator<C>,
+  d: Validator<D>,
+  e: Validator<E>,
+  f: Validator<F>,
+  g: Validator<G>,
+  h: Validator<H>,
+): Contract<A & B & C & D & E & F & G & H>;
+
 export declare function union<T extends Array<Validator<any> | string | number | boolean>>(
   ...rules: T
 ): Contract<

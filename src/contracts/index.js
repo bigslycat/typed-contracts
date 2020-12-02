@@ -2,6 +2,7 @@
 
 export * from './array';
 export * from './boolean';
+export * from './intersection';
 export * from './literal';
 export * from './null';
 export * from './number';
