@@ -1,3 +1,16 @@
+# [2.4.0](https://github.com/bigslycat/typed-contracts/compare/v2.3.0...v2.4.0) (2020-12-02)
+
+
+### Bug Fixes
+
+* **package:** fix potential security vulnerabilities ([6a84829](https://github.com/bigslycat/typed-contracts/commit/6a84829b91e891a2567991f663cdcea7a6c46fb8))
+* **package:** fix potential security vulnerabilities ([db56cde](https://github.com/bigslycat/typed-contracts/commit/db56cde7d9511c79dd06034122f17e660fd24932))
+
+
+### Features
+
+* add intersection contract ([0330e84](https://github.com/bigslycat/typed-contracts/commit/0330e84394522ccb60a195124949eb6b21898f6d))
+
 # [2.3.0](https://github.com/bigslycat/typed-contracts/compare/v2.2.2...v2.3.0) (2020-04-18)
 
 
