@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Flow check
+        run: yarn flow
+
+      - name: Tests
+        run: yarn test:ci
+        env:
+          CI: true
+
+      - name: Build
+        run: yarn build
+
+      - name: Semantic release
+        run: npx semantic-release
