@@ -1,6 +1,6 @@
 # typed-contracts
 
-[![Build Status][status-img]][status-url]
+[![Lint and test](https://github.com/bigslycat/typed-contracts/workflows/Lint%20and%20test/badge.svg)](https://github.com/bigslycat/typed-contracts/actions?query=workflow%3A%22Lint+and+test%22)
 
 Validation with good Flow and TypeScript type inference
 
@@ -209,6 +209,3 @@ const string = t.string.mapResult(transform);
 
 const number = t.number.match<Either<*, *>>(Right, Left);
 ```
-
-[status-url]: https://travis-ci.org/bigslycat/typed-contracts
-[status-img]: https://travis-ci.org/bigslycat/typed-contracts.svg?branch=master
