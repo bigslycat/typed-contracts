@@ -11,7 +11,7 @@ const env = modules => [
   },
 ];
 
-module.exports = {
+const config /* : any */ = {
   plugins: ['@babel/plugin-proposal-class-properties'],
   presets: ['@babel/flow', env()],
   env: {
@@ -20,3 +20,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = config;

@@ -47,12 +47,9 @@ function curry2(fn) {
     args.length > 1 ? fn(args[0], args[1]) : value => fn(args[0], value);
 }
 
-declare export function of/* :: <T> */ (
+export function of /* :: <T> */(
   validate: (valueName: string, value: mixed) => ValidationError | T,
-): Contract<T>;
-
-// eslint-disable-next-line no-redeclare
-export function of(validate) {
+): Contract<T> {
   const maybe = curry2((valueName, value) =>
     value == null ? value : validate(valueName, value),
   );
@@ -62,9 +59,9 @@ export function of(validate) {
   );
 
   const contract = (...args) => {
-    if (args.length > 1) return validate(args[0], args[1]);
+    if (args.length > 1) return validate((args[0]: any), args[1]);
 
-    const result = value => validate(args[0], value);
+    const result = value => validate((args[0]: any), value);
 
     result.maybe = maybe(args[0]);
     result.optional = optional(args[0]);
@@ -88,5 +85,5 @@ export function of(validate) {
   contract.mapResult = mapResult;
   contract.match = match;
 
-  return contract;
+  return (contract: any);
 }
