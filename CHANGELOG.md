@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/bigslycat/typed-contracts/compare/v2.4.0...v3.0.0) (2020-12-02)
+
+
+### chore
+
+* **release:** fix version ([2937019](https://github.com/bigslycat/typed-contracts/commit/293701921811eb02ec4f3f37fe993e383352de30))
+
+
+### BREAKING CHANGES
+
+* **release:** Now you have to take care of the polyfills yourself.
+
 # [2.4.0](https://github.com/bigslycat/typed-contracts/compare/v2.3.0...v2.4.0) (2020-12-02)
 
 
