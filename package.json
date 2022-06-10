@@ -55,7 +55,7 @@
     "rollup": "^2.34.0",
     "rollup-plugin-clear": "^2.0.7",
     "rollup-plugin-flow-entry": "^0.3.4",
-    "semantic-release": "^17.3.0",
+    "semantic-release": "^19.0.3",
     "shx": "^0.3.3",
     "typescript": "^4.1.2"
   },
